@@ -4,9 +4,7 @@ from sys import argv, exit
 
 
 _PDF_EXTENSION = ".pdf"
-_PDF_EXTENSION_IN_LIST = [_PDF_EXTENSION]
 _TXT_EXTENSION = ".txt"
-_TXT_EXTENSION_IN_LIST = [_TXT_EXTENSION]
 
 
 def _make_default_output_file_name(input_path):

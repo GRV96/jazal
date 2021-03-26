@@ -54,7 +54,7 @@ class PathChecker:
 	@property
 	def path(self):
 		"""
-		The path that this object checks
+		The path that this object checks, stored as a Pathlib Path object
 		"""
 		return self._path
 
@@ -72,4 +72,7 @@ class PathChecker:
 		return self._path.is_file()
 
 	def remove_suffix(self, suffix):
-		self.extension.remove(suffix)
+		try:
+			self.extension.remove(suffix)
+		except ValueError:
+			pass
