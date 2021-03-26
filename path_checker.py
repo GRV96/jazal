@@ -54,12 +54,16 @@ class PathChecker:
 	@property
 	def path(self):
 		"""
-		The path that this object checks, stored as a Pathlib Path object
+		The path that this object checks. It must be an instance of Pathlib's
+		class Path.
 		"""
 		return self._path
 
 	@path.setter
 	def path(self, a_path):
+		if not isinstance(a_path, Path):
+			raise ValueError(
+				"a_path must be an instance of Pathlib's class Path.")
 		self._path = a_path
 
 	def path_exists(self):
