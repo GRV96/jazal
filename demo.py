@@ -8,28 +8,6 @@ _TXT_EXTENSION = ".txt"
 _TXT_EXTENSION_IN_LIST = [_TXT_EXTENSION]
 
 
-class PdfField:
-	def __init__(self, name, val_type, value):
-		self.name = name
-		self.val_type = val_type
-		self.value = value
-
-	def __str__(self):
-		return self.name + " (" + str(self.val_type) + "): " + str(self.value)
-
-
-def get_pdf_field_list(pdf_reader):
-	pdf_fields = pdf_reader.getFields()
-	if pdf_fields is None:
-		return None
-
-	field_list = list()
-	for mapping_name, field in pdf_fields.items():
-		field_list.append(PdfField(mapping_name, field.fieldType, field.value))
-
-	return field_list
-
-
 def _make_default_output_file_name(input_path):
 	return _make_default_output_file_stem(input_path) + _TXT_EXTENSION
 
