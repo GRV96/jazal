@@ -15,9 +15,9 @@ class PathChecker:
 		"""
 		The extension that the checked path is supposed to have, stored as a
 		list of suffixes. For example, a PDF file's suffix list is ['.pdf']; a
-		Linux archive file's suffix list is ['.tar', '.gz']. Every extension
-		must start with a '.'. The suffixes can be given in a tuple. If this
-		property is set to None, it will be and empty list.
+		Linux archive file's suffix list can be ['.tar', '.gz']. Every
+		extension must start with a '.'. The suffixes can be given in a tuple.
+		If this property is set to None, it will be and empty list.
 		"""
 		return self._extension
 
@@ -40,16 +40,27 @@ class PathChecker:
 		return ext_str
 
 	def get_file_name(self, with_ext):
-		if not path.is_file():
+		if not self.path_is_file():
 			return ""
 
 		file_name = self.path.name
 
 		if not with_ext:
-			ext_index = file_name.index(path.suffixes[0])
+			ext_index = file_name.index(self.path.suffixes[0])
 			file_name = file_name[:ext_index]
 
 		return file_name
+
+	def make_file_stem(self, before_stem=None, after_stem=None):
+		stem = self.get_file_name(False)
+
+		if before_stem is not None:
+			stem = before_stem + stem
+
+		if after_stem is not None:
+			stem += after_stem
+
+		return stem
 
 	@property
 	def path(self):

@@ -3,16 +3,7 @@ from pathlib import Path
 from sys import argv, exit
 
 
-_PDF_EXTENSION = ".pdf"
 _TXT_EXTENSION = ".txt"
-
-
-def _make_default_output_file_name(input_path):
-	return _make_default_output_file_stem(input_path) + _TXT_EXTENSION
-
-
-def _make_default_output_file_stem(input_path):
-	return input_path.stem + "_file_name"
 
 
 if __name__ == "__main__":
@@ -20,20 +11,21 @@ if __name__ == "__main__":
 	# Input path checks
 	try:
 		input_path = Path(argv[1])
-		input_chekcer = PathChecker(input_path, [_PDF_EXTENSION])
+		input_checker = PathChecker(input_path, [".pdf"])
 
 	except IndexError:
-		print("ERROR! The path to a " + _PDF_EXTENSION
-			+ " file must be provided as the first argument.")
+		print("ERROR! The path to a file with the extension "
+			+ input_chekcer.extension_to_str()
+			+ " must be provided as the first argument.")
 		exit()
 
-	if not input_chekcer.path_exists():
+	if not input_checker.path_exists():
 		print("ERROR! " + str(input_path) + " does not exist.")
 		exit()
 
-	if not input_chekcer.extension_is_correct(): # False if not a file
-		print("ERROR! The first argument must be the path to a "
-			+ _PDF_EXTENSION + " file.")
+	if not input_checker.extension_is_correct(): # False if not a file
+		print("ERROR! The first argument must be the path to a file with the extension "
+			+ input_checker.extension_to_str() + ".")
 		exit()
 
 	# Output path checks
@@ -42,14 +34,17 @@ if __name__ == "__main__":
 		output_checker = PathChecker(output_path, [_TXT_EXTENSION])
 
 		if output_checker.path_is_dir():
-			output_path = output_path/_make_default_output_file_name(input_path)
+			output_path = output_path/(
+				input_checker.make_file_stem(after_stem="_file_name")
+				+ output_checker.extension_to_str())
 
 		elif not output_checker.extension_is_correct():
 			output_path = output_path.with_suffix(_TXT_EXTENSION)
 
 	except IndexError:
 		output_path = input_path.with_name(
-			_make_default_output_file_name(input_path))
+			input_checker.make_file_stem(after_stem="_file_name")
+			+ output_checker.extension_to_str())
 
 	# Real work
 	input_file_name = input_path.name
