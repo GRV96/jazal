@@ -66,25 +66,29 @@ class PathChecker:
 	def path(self):
 		"""
 		The path that this object checks. It must be an instance of Pathlib's
-		class Path.
+		class Path. If it is set to a string, that string is converted to a
+		Path object.
 		"""
 		return self._path
 
 	@path.setter
 	def path(self, a_path):
-		if not isinstance(a_path, Path):
+		if isinstance(a_path, Path):
+			self._path = a_path
+		elif isinstance(a_path, str):
+			self._path = Path(a_path)
+		else:
 			raise ValueError(
-				"a_path must be an instance of Pathlib's class Path.")
-		self._path = a_path
+				"a_path must be an instance of str or Pathlib's class Path.")
 
 	def path_exists(self):
-		return self._path.exists()
+		return self.path.exists()
 
 	def path_is_dir(self):
-		return self._path.is_dir()
+		return self.path.is_dir()
 
 	def path_is_file(self):
-		return self._path.is_file()
+		return self.path.is_file()
 
 	def remove_suffix(self, suffix):
 		try:
