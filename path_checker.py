@@ -32,12 +32,7 @@ class PathChecker:
 		return self._path.suffixes == self.extension
 
 	def extension_to_str(self):
-		ext_str = ""
-
-		for suffix in self.extension:
-			ext_str += suffix
-
-		return ext_str
+		return "".join(self.extension)
 
 	def get_file_name(self, with_ext):
 		if not self.path_is_file():
