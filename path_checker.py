@@ -93,5 +93,6 @@ class PathChecker:
 	def remove_suffix(self, suffix):
 		try:
 			self.extension.remove(suffix)
+			return True
 		except ValueError:
-			pass
+			return False
