@@ -26,6 +26,13 @@ class PathChecker:
 		self.path = a_path
 		self.extension = suffixes
 
+	def __eq__(self, other):
+		return self.path == other.path and self.extension == other.extension
+
+	def __repr__(self):
+		return "PathChecker('" + str(self.path) + "', "\
+			+ str(self.extension) + ")"
+
 	def add_suffix(self, suffix):
 		"""
 		Adds a suffix to the end of property extension.
