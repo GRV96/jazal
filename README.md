@@ -1,2 +1,5 @@
 # path_checker
-This Python library performs certain verifications on paths before they are used by an application. It depends on Pathlib.
+
+Before an application uses a path to a file, Python class PathChecker can
+verify whether the path has the right extension, whether it exists and whether
+it is a directory or a file. PathChecker depends on Pathlib.
