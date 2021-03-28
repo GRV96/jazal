@@ -27,10 +27,12 @@ class PathChecker:
 		self.extension = suffixes
 
 	def __eq__(self, other):
+		if not isinstance(other, self.__class__):
+			return False
 		return self.path == other.path and self.extension == other.extension
 
 	def __repr__(self):
-		return "PathChecker('" + str(self.path) + "', "\
+		return self.__class__.__name__ + "('" + str(self.path) + "', "\
 			+ str(self.extension) + ")"
 
 	def add_suffix(self, suffix):
