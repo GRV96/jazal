@@ -24,7 +24,8 @@ if __name__ == "__main__":
 		exit()
 
 	if not input_checker.extension_is_correct(): # False if not a file
-		print("ERROR! The first argument must be the path to a file with the extension "
+		print("ERROR! The first argument must be the "
+			+ "path to a file with the extension "
 			+ input_checker.extension_to_str() + ".")
 		exit()
 

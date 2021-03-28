@@ -50,7 +50,7 @@ class PathChecker:
 		The extension that the checked path is supposed to have, stored as a
 		list of suffixes. For example, a PDF file's suffix list is ['.pdf']; a
 		Linux archive file's suffix list can be ['.tar', '.gz']. Every
-		extension must start with a '.'. The suffixes can be given in a tuple.
+		extension must start with '.'. The suffixes can be given in a tuple.
 		If this property is set to None, it will be and empty list.
 		"""
 		return self._extension
@@ -147,8 +147,8 @@ class PathChecker:
 		elif isinstance(a_path, str):
 			self._path = Path(a_path)
 		else:
-			raise ValueError(
-				"a_path must be an instance of str or Pathlib's class Path.")
+			raise TypeError("The given path must be an instance "
+				+ "of str or Pathlib's class Path.")
 
 	def path_exists(self):
 		"""
