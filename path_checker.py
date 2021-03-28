@@ -82,17 +82,17 @@ class PathChecker:
 
 	def get_file_name(self, with_ext=True):
 		"""
-		Provides the name of the file pointed by path. The returned name
+		Provides the name of the file pointed to by path. The returned name
 		includes the extension if and only if with_ext is True. If path does
-		not point a file, an empty string is returned.
+		not point to a file, an empty string is returned.
 
 		Args:
 			with_ext (bool): if True, the returned file name will contain the
 				extension. Defaults to True.
 
 		Returns:
-			str: the name of the file pointed by path. If path does not point
-			a file, an empty string is returned.
+			str: the name of the file pointed to by path. If path does not
+			point to a file, an empty string is returned.
 		"""
 		if not self.path_is_file():
 			return ""
@@ -152,7 +152,7 @@ class PathChecker:
 
 	def path_exists(self):
 		"""
-		Indicates whether path points an existent directory of file.
+		Indicates whether path points to an existent directory of file.
 
 		Returns:
 			bool: True if the path exists, False otherwise
@@ -161,7 +161,7 @@ class PathChecker:
 
 	def path_is_dir(self):
 		"""
-		Indicates whether path points a directory.
+		Indicates whether path points to a directory.
 
 		Returns:
 			bool: True if the path is a directory, False otherwise
@@ -170,7 +170,7 @@ class PathChecker:
 
 	def path_is_file(self):
 		"""
-		Indicates whether path points a file.
+		Indicates whether path points to a file.
 
 		Returns:
 			bool: True if the path is a file, False otherwise
