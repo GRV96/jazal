@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
 	except IndexError:
 		print("ERROR! The path to a file with the extension "
-			+ input_chekcer.extension_to_str()
+			+ input_checker.extension_to_str()
 			+ " must be provided as the first argument.")
 		exit()
 
