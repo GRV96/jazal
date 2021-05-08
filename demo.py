@@ -3,6 +3,7 @@ from pathlib import Path
 from sys import argv, exit
 
 
+_PDF_EXTENSION = ".pdf"
 _TXT_EXTENSION = ".txt"
 
 
@@ -10,11 +11,10 @@ if __name__ == "__main__":
 	# Input path checks
 	try:
 		input_path = Path(argv[1])
-		input_checker = PathChecker(input_path, [".pdf"])
+		input_checker = PathChecker(input_path, [_PDF_EXTENSION])
 
 	except IndexError:
-		print("ERROR! The path to a file with the extension "
-			+ input_checker.extension_to_str()
+		print("ERROR! The path to a file with the extension " + _PDF_EXTENSION
 			+ " must be provided as the first argument.")
 		exit()
 
