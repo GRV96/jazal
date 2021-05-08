@@ -20,8 +20,8 @@ class PathChecker:
 		documentation of properties path and extension.
 
 		Args:
-			a_path: the path that this instance will check.
-			suffixes: the extension that the path is supposed to have.
+			a_path (pathlib.Path): the path that this instance will check
+			suffixes (list): the extension that the path is supposed to have.
 		"""
 		self.path = a_path
 		self.extension = suffixes
@@ -29,6 +29,7 @@ class PathChecker:
 	def __eq__(self, other):
 		if not isinstance(other, self.__class__):
 			return False
+
 		return self.path == other.path and self.extension == other.extension
 
 	def __repr__(self):
@@ -48,10 +49,11 @@ class PathChecker:
 	def extension(self):
 		"""
 		The extension that the checked path is supposed to have, stored as a
-		list of suffixes. For example, a PDF file's suffix list is ['.pdf']; a
-		Linux archive file's suffix list can be ['.tar', '.gz']. Every
-		extension must start with '.'. The suffixes can be given in a tuple.
-		If this property is set to None, it will be and empty list.
+		list of suffixes, which are strings. For example, a PDF file's suffix
+		list is ['.pdf']; a Linux archive's suffix list can be
+		['.tar', '.gz']. Every extension must start with '.'. The suffixes can
+		be given in a tuple. If this property is set to None, it will be an
+		empty list.
 		"""
 		return self._extension
 
@@ -59,6 +61,7 @@ class PathChecker:
 	def extension(self, suffixes):
 		if suffixes is None:
 			self._extension = []
+
 		else:
 			self._extension = list(suffixes)
 
@@ -118,6 +121,7 @@ class PathChecker:
 			after_stem (str): the string to add to the end of path's stem. If
 				it is None, nothing is added to the stem's end. Defaults to
 				None.
+
 		Returns:
 			str: a new stem with the specified additions
 		"""
@@ -144,8 +148,10 @@ class PathChecker:
 	def path(self, a_path):
 		if isinstance(a_path, Path):
 			self._path = a_path
+
 		elif isinstance(a_path, str):
 			self._path = Path(a_path)
+
 		else:
 			raise TypeError("The given path must be an instance "
 				+ "of str or Pathlib's class Path.")
@@ -191,5 +197,6 @@ class PathChecker:
 		try:
 			self.extension.remove(suffix)
 			return True
+
 		except ValueError:
 			return False

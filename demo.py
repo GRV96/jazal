@@ -7,7 +7,6 @@ _TXT_EXTENSION = ".txt"
 
 
 if __name__ == "__main__":
-
 	# Input path checks
 	try:
 		input_path = Path(argv[1])
@@ -45,7 +44,7 @@ if __name__ == "__main__":
 	except IndexError:
 		output_path = input_path.with_name(
 			input_checker.make_file_stem(after_stem="_file_name")
-			+ output_checker.extension_to_str())
+			+ _TXT_EXTENSION)
 
 	# Real work
 	input_file_name = input_path.name
