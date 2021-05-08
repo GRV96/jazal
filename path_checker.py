@@ -22,6 +22,9 @@ class PathChecker:
 		Args:
 			a_path (pathlib.Path): the path that this instance will check
 			suffixes (list): the extension that the path is supposed to have.
+
+		Raises:
+			TypeError: if a_path is not an instance of str or pathlib.Path
 		"""
 		self.path = a_path
 		self.extension = suffixes
@@ -138,23 +141,15 @@ class PathChecker:
 	@property
 	def path(self):
 		"""
-		The path that this object checks. It must be an instance of Pathlib's
-		class Path. If it is set to a string, that string is converted to a
+		The path that this object checks. It must be an instance of
+		pathlib.Path. If it is set to a string, that string is converted to a
 		Path object.
 		"""
 		return self._path
 
 	@path.setter
 	def path(self, a_path):
-		if isinstance(a_path, Path):
-			self._path = a_path
-
-		elif isinstance(a_path, str):
-			self._path = Path(a_path)
-
-		else:
-			raise TypeError("The given path must be an instance "
-				+ "of str or Pathlib's class Path.")
+		self._set_path(a_path)
 
 	def path_exists(self):
 		"""
@@ -200,3 +195,14 @@ class PathChecker:
 
 		except ValueError:
 			return False
+
+	def _set_path(self, a_path):
+		if isinstance(a_path, Path):
+			self._path = a_path
+
+		elif isinstance(a_path, str):
+			self._path = Path(a_path)
+
+		else:
+			raise TypeError("The given path must be an instance "
+				+ "of str or pathlib.Path.")
