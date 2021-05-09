@@ -1,25 +1,24 @@
-from arg_output_path_checker import ArgOutputPathChecker
 from arg_path_checker import ArgPathChecker
-from path_checker import PathChecker
+from path_checker import make_default_file_name, make_default_path
 from pathlib import Path
-
 from sys import argv, exit
 
 
 if __name__ == "__main__":
+	AFTER_DFLT_STEM = "_file_name"
 	ERROR_INTRO = "ERROR! "
-	TXT_EXTENSION = ".txt"
 
 	# Input path checks
 	try:
 		input_checker = ArgPathChecker(None, [".pdf"], "Argument 1")
-		input_path = Path(argv[1])
+		input_path = Path(argv[1]) # Can raise IndexError.
 		input_checker.path = input_path
 
 		input_checker.check_path_exists()
 		input_checker.check_extension_correct()
 
 	except IndexError:
+		# Argument 1 not given
 		print(ERROR_INTRO + input_checker.make_missing_arg_msg())
 		exit()
 
@@ -29,21 +28,25 @@ if __name__ == "__main__":
 
 	# Output path checks
 	try:
-		output_path = Path(argv[2])
-		output_checker = PathChecker(output_path, [TXT_EXTENSION])
+		output_checker = ArgPathChecker(None, [".txt"], "Argument 2")
+		output_path = Path(argv[2]) # Can raise IndexError.
+		output_checker.path = output_path
 
-		if output_checker.path_is_dir():
-			output_path = output_path/(
-				input_checker.make_file_stem(after_stem="_file_name")
-				+ output_checker.extension_to_str())
+		if not output_checker.path_exists():
+			output_path = make_default_path(
+				input_checker, output_checker, None, AFTER_DFLT_STEM)
+
+		elif output_checker.path_is_dir():
+			output_path = output_path/make_default_file_name(
+				input_checker, output_checker, None, AFTER_DFLT_STEM)
 
 		elif not output_checker.extension_is_correct():
-			output_path = output_path.with_suffix(TXT_EXTENSION)
+			output_path = output_checker.path_with_correct_ext()
 
 	except IndexError:
-		output_path = input_path.with_name(
-			input_checker.make_file_stem(after_stem="_file_name")
-			+ TXT_EXTENSION)
+		# Argument 2 not given
+		output_path = make_default_path(
+			input_checker, output_checker, None, AFTER_DFLT_STEM)
 
 	# Real work
 	input_file_name = input_path.name

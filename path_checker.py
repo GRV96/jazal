@@ -111,7 +111,22 @@ class PathChecker:
 
 		return file_name
 
-	def make_file_stem(self, before_stem=None, after_stem=None):
+	def make_altered_name(self, before_stem=None,
+			after_stem=None, extension=None):
+		stem = self.make_altered_stem(before_stem, after_stem)
+
+		if stem is None:
+			# path does not point to a file.
+			return None
+
+		if extension is None:
+			name = stem + self.extension
+		else:
+			name = stem + extension
+
+		return name
+
+	def make_altered_stem(self, before_stem=None, after_stem=None):
 		"""
 		Creates a file stem by adding a string to the beginning and/or the end
 		of path's stem. If before_stem and after_stem are None, path's stem is
@@ -211,3 +226,20 @@ class PathChecker:
 		else:
 			raise TypeError("The given path must be an instance "
 				+ "of str or pathlib.Path.")
+
+
+def make_default_file_name(stem_source, ext_source,
+		before_stem=None, after_stem=None):
+	extension = ext_source.extension_to_str()
+	return stem_source.make_altered_name(before_stem, after_stem, extension)
+
+
+def make_default_path(stem_source, ext_source,
+		before_stem=None, after_stem=None):
+	name = make_default_file_name(stem_source, ext_source,
+		before_stem, after_stem)
+
+	if name is None:
+		return None
+
+	return stem_source.path.parents[0]/name

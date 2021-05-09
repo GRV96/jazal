@@ -30,6 +30,15 @@ class ArgPathChecker(PathChecker):
 		return self.arg_name + ": the path to a file with extension '"\
 			+ self.extension_to_str() + "' must be provided."
 
+	def path_with_correct_ext(self):
+		stem = self.get_file_name(False)
+
+		if stem is None:
+			# path does not point to a file.
+			return None
+
+		return self.path.parents[0]/(stem + self.extension_to_str())
+
 	def _set_path(self, a_path):
 		if a_path is None:
 			self._path = a_path
