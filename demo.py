@@ -1,12 +1,13 @@
+from arg_output_path_checker import ArgOutputPathChecker
 from arg_path_checker import ArgPathChecker
 from path_checker import PathChecker
 from pathlib import Path
+
 from sys import argv, exit
 
 
 if __name__ == "__main__":
 	ERROR_INTRO = "ERROR! "
-	PDF_EXTENSION = ".pdf"
 	TXT_EXTENSION = ".txt"
 
 	# Input path checks

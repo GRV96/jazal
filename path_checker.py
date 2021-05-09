@@ -97,11 +97,11 @@ class PathChecker:
 				extension. Defaults to True.
 
 		Returns:
-			str: the name of the file pointed to by path. If path does not
-			point to a file, an empty string is returned.
+			str: the name of the file pointed to by path or None if path does
+				not point to a file
 		"""
 		if not self.path_is_file():
-			return ""
+			return None
 
 		file_name = self.path.name
 
@@ -126,9 +126,14 @@ class PathChecker:
 				None.
 
 		Returns:
-			str: a new stem with the specified additions
+			str: a new stem with the specified additions or None if path does
+				not point to a file
 		"""
 		stem = self.get_file_name(False)
+
+		if stem is None:
+			# path does not point to a file.
+			return None
 
 		if before_stem is not None:
 			stem = before_stem + stem
