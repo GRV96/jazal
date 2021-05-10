@@ -41,7 +41,7 @@ if __name__ == "__main__":
 				input_checker, output_checker, None, AFTER_DFLT_STEM)
 
 		elif not output_checker.extension_is_correct():
-			output_path = output_checker.path_with_correct_ext()
+			output_path = output_checker.path_with_correct_exten()
 
 	except IndexError:
 		# Argument 2 not given
