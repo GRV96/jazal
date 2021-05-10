@@ -21,7 +21,8 @@ class PathChecker:
 
 		Args:
 			a_path (pathlib.Path): the path that this instance will check
-			suffixes (list): the extension that the path is supposed to have.
+			suffixes (list or tuple): the extension that the path is supposed
+				to have.
 
 		Raises:
 			TypeError: if a_path is not an instance of str or pathlib.Path
@@ -86,15 +87,15 @@ class PathChecker:
 		"""
 		return "".join(self.extension)
 
-	def get_file_name(self, with_ext=True):
+	def get_file_name(self, with_exten=True):
 		"""
 		Provides the name of the file pointed to by path. The returned name
-		includes the extension if and only if with_ext is True. If path does
+		includes the extension if and only if with_exten is True. If path does
 		not point to a file, an empty string is returned.
 
 		Args:
-			with_ext (bool): if True, the returned file name will contain the
-				extension. Defaults to True.
+			with_exten (bool): if True, the returned file name will contain
+				the extension. Defaults to True.
 
 		Returns:
 			str: the name of the file pointed to by path or None if path does
@@ -105,14 +106,37 @@ class PathChecker:
 
 		file_name = self.path.name
 
-		if not with_ext:
-			ext_index = file_name.index(self.path.suffixes[0])
-			file_name = file_name[:ext_index]
+		if not with_exten:
+			exten_index = file_name.index(self.path.suffixes[0])
+			file_name = file_name[:exten_index]
 
 		return file_name
 
 	def make_altered_name(self, before_stem=None,
 			after_stem=None, extension=None):
+		"""
+		Creates a file name by adding a string to the beginning and/or the end
+		of path's stem and an extension at the end of the new stem. If
+		before_stem and after_stem are None, the new stem is identical to
+		path's stem. This method does not change path. Use make_altered_stem
+		if you do not want to append an extension.
+
+		Args:
+			before_stem (str): the string to add to the beginning of path's
+				stem. If it is None, nothing is added to the stem's beginning.
+				Defaults to None.
+			after_stem (str): the string to add to the end of path's stem. If
+				it is None, nothing is added to the stem's end. Defaults to
+				None.
+			extension (str): the extension to append to the new stem in order
+				to make the name. Each suffix must comply with the
+				specification of property extension. If None, self.extension
+				is appended. Defaults to None.
+
+		Returns:
+			str: a new stem with the specified additions or None if path does
+				not point to a file
+		"""
 		stem = self.make_altered_stem(before_stem, after_stem)
 
 		if stem is None:
@@ -130,7 +154,8 @@ class PathChecker:
 		"""
 		Creates a file stem by adding a string to the beginning and/or the end
 		of path's stem. If before_stem and after_stem are None, path's stem is
-		returned. This method does not change path.
+		returned. This method does not change path. Use make_altered_name to
+		append an extension.
 
 		Args:
 			before_stem (str): the string to add to the beginning of path's
@@ -162,8 +187,8 @@ class PathChecker:
 	def path(self):
 		"""
 		The path that this object checks. It must be an instance of
-		pathlib.Path. If it is set to a string, that string is converted to a
-		Path object.
+		pathlib.Path. If it is set to a string, that string will be converted
+		to a pathlib.Path object.
 		"""
 		return self._path
 
@@ -217,6 +242,17 @@ class PathChecker:
 			return False
 
 	def _set_path(self, a_path):
+		"""
+		Sets the path checked by this instance. The path must be an instance
+		of pathlib.Path. If the given path is a string, it will be converted
+		to a pathlib.Path object.
+
+		Args:
+			a_path (str or pathlib.Path): the path that this object must check
+
+		Raises:
+			TypeError: if a_path is not an instance of str or pathlib.Path
+		"""
 		if isinstance(a_path, Path):
 			self._path = a_path
 
@@ -224,19 +260,55 @@ class PathChecker:
 			self._path = Path(a_path)
 
 		else:
-			raise TypeError("The given path must be an instance "
-				+ "of str or pathlib.Path.")
+			raise TypeError(
+				"The given path must be an instance of str or pathlib.Path.")
 
 
-def make_default_file_name(stem_source, ext_source,
+def make_default_file_name(stem_source, exten_source,
 		before_stem=None, after_stem=None):
-	extension = ext_source.extension_to_str()
+	"""
+	Creates a file name by adding a string at the beginning and/or the end of
+	a given file stem and appending the given extension to the new stem. This
+	method allows to create a file name from two PathCheckers. The returned
+	file name can be used as a default value if a path is missing or invalid.
+
+	Args:
+		stem_source (PathChecker): contains the file stem.
+		exten_source (PathChecker): contains the file extension.
+		before_stem (str): the string to add to the file stem's beginning. If
+			it is None, nothing is added to the stem's beginning. Defaults to
+			None.
+		after_stem (str): the string to add to the file stem's end. If it is
+			None, nothing is added to the stem's end. Defaults to None.
+
+	Returns:
+		str: the file name described above
+	"""
+	extension = exten_source.extension_to_str()
 	return stem_source.make_altered_name(before_stem, after_stem, extension)
 
 
-def make_default_path(stem_source, ext_source,
+def make_default_path(stem_source, exten_source,
 		before_stem=None, after_stem=None):
-	name = make_default_file_name(stem_source, ext_source,
+	"""
+	Creates a path by adding a string at the beginning and/or the end of a
+	given file stem and appending the given extension to the new stem. This
+	method allows to create a path from two PathCheckers. The returned path
+	can be used as a default value if a path is missing or invalid.
+
+	Args:
+		stem_source (PathChecker): contains the file stem.
+		exten_source (PathChecker): contains the file extension.
+		before_stem (str): the string to add to the file stem's beginning. If
+			it is None, nothing is added to the stem's beginning. Defaults to
+			None.
+		after_stem (str): the string to add to the file stem's end. If it is
+			None, nothing is added to the stem's end. Defaults to None.
+
+	Returns:
+		str: the path described above
+	"""
+	name = make_default_file_name(stem_source, exten_source,
 		before_stem, after_stem)
 
 	if name is None:
