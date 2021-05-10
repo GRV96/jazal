@@ -16,8 +16,8 @@ class PathChecker:
 	def __init__(self, a_path, suffixes):
 		"""
 		The constructor needs a path and a list of suffixes that will make the
-		extension. In order to know which values are accepted, see the
-		documentation of properties path and extension.
+		expected extension. In order to know which values are accepted, see
+		the documentation of properties path and extension.
 
 		Args:
 			a_path (pathlib.Path): the path that this instance will check
@@ -71,7 +71,8 @@ class PathChecker:
 
 	def extension_is_correct(self):
 		"""
-		Indicates whether the path's extension matches the expected extension.
+		Indicates whether the path's extension matches the expected extension,
+		stored in property extension.
 
 		Returns:
 			bool: True if the path has the right extension, False otherwise
@@ -89,7 +90,7 @@ class PathChecker:
 
 	def get_file_name(self, with_exten=True):
 		"""
-		Provides the name of the file pointed to by path. The returned name
+		Provides the name of the file that path points to. The returned name
 		includes the extension if and only if with_exten is True. If path does
 		not point to a file, an empty string is returned.
 
@@ -116,10 +117,10 @@ class PathChecker:
 			after_stem=None, extension=None):
 		"""
 		Creates a file name by adding a string to the beginning and/or the end
-		of path's stem and an extension at the end of the new stem. If
+		of path's stem and appending an extension to the new stem. If
 		before_stem and after_stem are None, the new stem is identical to
 		path's stem. This method does not change path. Use make_altered_stem
-		if you do not want to append an extension.
+		instead if you do not want to append an extension.
 
 		Args:
 			before_stem (str): the string to add to the beginning of path's
@@ -134,8 +135,8 @@ class PathChecker:
 				is appended. Defaults to None.
 
 		Returns:
-			str: a new stem with the specified additions or None if path does
-				not point to a file
+			str: a new file name with the specified additions or None if path
+				does not point to a file
 		"""
 		stem = self.make_altered_stem(before_stem, after_stem)
 
@@ -154,8 +155,8 @@ class PathChecker:
 		"""
 		Creates a file stem by adding a string to the beginning and/or the end
 		of path's stem. If before_stem and after_stem are None, path's stem is
-		returned. This method does not change path. Use make_altered_name to
-		append an extension.
+		returned. This method does not change path. Use make_altered_name
+		instead to append an extension.
 
 		Args:
 			before_stem (str): the string to add to the beginning of path's
@@ -306,7 +307,7 @@ def make_default_path(stem_source, exten_source,
 			None, nothing is added to the stem's end. Defaults to None.
 
 	Returns:
-		str: the path described above
+		pathlib.Path: the path described above
 	"""
 	name = make_default_file_name(stem_source, exten_source,
 		before_stem, after_stem)
