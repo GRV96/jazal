@@ -32,11 +32,7 @@ if __name__ == "__main__":
 		output_path = Path(argv[2]) # Can raise IndexError.
 		output_checker.path = output_path
 
-		if not output_checker.path_exists():
-			output_path = make_default_path(
-				input_checker, output_checker, None, AFTER_DFLT_STEM)
-
-		elif output_checker.path_is_dir():
+		if output_checker.path_is_dir():
 			output_path = output_path/make_default_file_name(
 				input_checker, output_checker, None, AFTER_DFLT_STEM)
 

@@ -99,16 +99,13 @@ class PathChecker:
 				the extension. Defaults to True.
 
 		Returns:
-			str: the name of the file pointed to by path or None if path does
-				not point to a file
+			str: the name of the file that path points to
 		"""
-		if not self.path_is_file():
-			return None
-
 		file_name = self.path.name
 
-		if not with_exten:
-			exten_index = file_name.index(self.path.suffixes[0])
+		actual_suffixes = self.path.suffixes
+		if not with_exten and len(actual_suffixes) > 0:
+			exten_index = file_name.index(actual_suffixes[0])
 			file_name = file_name[:exten_index]
 
 		return file_name
@@ -135,14 +132,9 @@ class PathChecker:
 				is appended. Defaults to None.
 
 		Returns:
-			str: a new file name with the specified additions or None if path
-				does not point to a file
+			str: a new file name with the specified additions
 		"""
 		stem = self.make_altered_stem(before_stem, after_stem)
-
-		if stem is None:
-			# path does not point to a file.
-			return None
 
 		if extension is None:
 			name = stem + self.extension
@@ -167,14 +159,9 @@ class PathChecker:
 				None.
 
 		Returns:
-			str: a new stem with the specified additions or None if path does
-				not point to a file
+			str: a new stem with the specified additions
 		"""
 		stem = self.get_file_name(False)
-
-		if stem is None:
-			# path does not point to a file.
-			return None
 
 		if before_stem is not None:
 			stem = before_stem + stem
@@ -311,8 +298,5 @@ def make_default_path(stem_source, exten_source,
 	"""
 	name = make_default_file_name(stem_source, exten_source,
 		before_stem, after_stem)
-
-	if name is None:
-		return None
 
 	return stem_source.path.parents[0]/name
