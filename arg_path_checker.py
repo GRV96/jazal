@@ -6,7 +6,8 @@ class ArgPathChecker(PathChecker):
 	In this subclass of PathChecker, the path is considered as an argument
 	given to a fucntion or a script. The class provides methods to warn the
 	user that path is invalid and others to make a correct path. Property path
-	can be set to None.
+	can be set to None so that this class can be instantiated even when a path
+	is not provided.
 	"""
 
 	def __init__(self, a_path, suffixes, arg_name):
@@ -71,7 +72,8 @@ class ArgPathChecker(PathChecker):
 		"""
 		The message created by this method tells that argument self.arg_name,
 		the path to a file with extension self.extension, is needed. It is
-		relevant if the argument is missing.
+		relevant if the argument is missing. This method works when path is
+		None.
 
 		Returns:
 			str: a message telling that the argument is needed
@@ -82,18 +84,11 @@ class ArgPathChecker(PathChecker):
 	def path_with_correct_exten(self):
 		"""
 		Creates a copy of path and replaces its extension with self.extension.
-		It only works if the checked path points to a file.
 
 		Returns:
-			pathlib.Path: a copy of path with the correct extension or None if
-				path does not point to a file.
+			pathlib.Path: a copy of path with the correct extension
 		"""
 		stem = self.get_file_name(False)
-
-		if stem is None:
-			# path does not point to a file.
-			return None
-
 		return self.path.parents[0]/(stem + self.extension_to_str())
 
 	def _set_path(self, a_path):

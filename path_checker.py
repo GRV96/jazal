@@ -3,14 +3,13 @@ from pathlib import Path
 
 class PathChecker:
 	"""
-	This class contains a Pathlib Path object (property path) and a list of
+	This class contains a pathlib.Path object (property path) and a list of
 	suffixes (property extension) that the path is supposed to have.
 	PathChecker can verify whether the path has the right extension, whether
 	it exists and whether it is a directory or a file.
 
-	In this class, a file's stem is defined as its file name without the
-	extension. However, in Pathlib, the stem is the file name without its last
-	suffix.
+	In this class, a file's stem is defined as its name without the extension.
+	In Pathlib, however, the stem is the file name without the last suffix.
 	"""
 
 	def __init__(self, a_path, suffixes):
@@ -20,9 +19,9 @@ class PathChecker:
 		the documentation of properties path and extension.
 
 		Args:
-			a_path (pathlib.Path): the path that this instance will check
+			a_path (pathlib.Path or str): the path that this instance will check
 			suffixes (list or tuple): the extension that the path is supposed
-				to have.
+				to have
 
 		Raises:
 			TypeError: if a_path is not an instance of str or pathlib.Path
@@ -71,13 +70,13 @@ class PathChecker:
 
 	def extension_is_correct(self):
 		"""
-		Indicates whether the path's extension matches the expected extension,
+		Indicates whether path's extension matches the expected extension,
 		stored in property extension.
 
 		Returns:
-			bool: True if the path has the right extension, False otherwise
+			bool: True if path has the right extension, False otherwise
 		"""
-		return self._path.suffixes == self.extension
+		return self.path.suffixes == self.extension
 
 	def extension_to_str(self):
 		"""
@@ -91,8 +90,7 @@ class PathChecker:
 	def get_file_name(self, with_exten=True):
 		"""
 		Provides the name of the file that path points to. The returned name
-		includes the extension if and only if with_exten is True. If path does
-		not point to a file, an empty string is returned.
+		includes the extension if and only if with_exten is True.
 
 		Args:
 			with_exten (bool): if True, the returned file name will contain
@@ -186,7 +184,7 @@ class PathChecker:
 
 	def path_exists(self):
 		"""
-		Indicates whether path points to an existent directory of file.
+		Indicates whether path points to an existent directory or file.
 
 		Returns:
 			bool: True if the path exists, False otherwise
@@ -198,7 +196,7 @@ class PathChecker:
 		Indicates whether path points to a directory.
 
 		Returns:
-			bool: True if the path is a directory, False otherwise
+			bool: True if path is a directory, False otherwise
 		"""
 		return self.path.is_dir()
 
@@ -207,7 +205,7 @@ class PathChecker:
 		Indicates whether path points to a file.
 
 		Returns:
-			bool: True if the path is a file, False otherwise
+			bool: True if path is a file, False otherwise
 		"""
 		return self.path.is_file()
 
@@ -236,10 +234,10 @@ class PathChecker:
 		to a pathlib.Path object.
 
 		Args:
-			a_path (str or pathlib.Path): the path that this object must check
+			a_path (pathlib.Path or str): the path that this object must check
 
 		Raises:
-			TypeError: if a_path is not an instance of str or pathlib.Path
+			TypeError: if a_path is not an instance of pathlib.Path or str
 		"""
 		if isinstance(a_path, Path):
 			self._path = a_path
@@ -249,7 +247,7 @@ class PathChecker:
 
 		else:
 			raise TypeError(
-				"The given path must be an instance of str or pathlib.Path.")
+				"The given path must be an instance of pathlib.Path or str.")
 
 
 def make_default_file_name(stem_source, exten_source,
@@ -257,7 +255,7 @@ def make_default_file_name(stem_source, exten_source,
 	"""
 	Creates a file name by adding a string at the beginning and/or the end of
 	a given file stem and appending the given extension to the new stem. This
-	method allows to create a file name from two PathCheckers. The returned
+	function allows to create a file name from two PathCheckers. The returned
 	file name can be used as a default value if a path is missing or invalid.
 
 	Args:
@@ -281,7 +279,7 @@ def make_default_path(stem_source, exten_source,
 	"""
 	Creates a path by adding a string at the beginning and/or the end of a
 	given file stem and appending the given extension to the new stem. This
-	method allows to create a path from two PathCheckers. The returned path
+	function allows to create a path from two PathCheckers. The returned path
 	can be used as a default value if a path is missing or invalid.
 
 	Args:
