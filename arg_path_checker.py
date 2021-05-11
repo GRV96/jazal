@@ -31,6 +31,18 @@ class ArgPathChecker(PathChecker):
 		PathChecker.__init__(self, a_path, suffixes)
 		self.arg_name = arg_name
 
+	def __eq__(self, other):
+		if not isinstance(other, self.__class__):
+			return False
+
+		return self.path == other.path\
+			and self.extension == other.extension\
+			and self.arg_name == other.arg_name
+
+	def __repr__(self):
+		return self.__class__.__name__ + "('" + str(self.path) + "', "\
+			+ str(self.extension) + ", '" + self.arg_name + "')"
+
 	@property
 	def arg_name(self):
 		"""
