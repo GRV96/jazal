@@ -7,7 +7,8 @@ class ArgPathChecker(PathChecker):
 	given to a fucntion or a script. The class provides methods to warn the
 	user that path is invalid and others to make a correct path. Property path
 	can be set to None so that this class can be instantiated even when a path
-	is not provided.
+	is not provided. Warning: most methods will raise an exception if they are
+	called while path is None.
 	"""
 
 	def __init__(self, a_path, suffixes, arg_name):
@@ -18,9 +19,10 @@ class ArgPathChecker(PathChecker):
 		documentation of PathChecker's properties path and extension.
 
 		Args:
-			a_path (pathlib.Path): the path that this instance will check
+			a_path (pathlib.Path or str): the path that this instance will
+				check. It can be None.
 			suffixes (list or tuple): the extension that path is supposed to
-				have.
+				have
 			arg_name (str): the name of the argument whose value is the
 				checked path
 
@@ -82,10 +84,10 @@ class ArgPathChecker(PathChecker):
 
 	def make_missing_arg_msg(self):
 		"""
-		The message created by this method tells that argument self.arg_name,
-		the path to a file with extension self.extension, is needed. It is
-		relevant if the argument is missing. This method works when path is
-		None.
+		The message created by this method tells that the argument named
+		self.arg_name, the path to a file with extension self.extension, is
+		needed. It is relevant if the argument is missing. This method works
+		even when path is None.
 
 		Returns:
 			str: a message telling that the argument is needed
@@ -113,8 +115,8 @@ class ArgPathChecker(PathChecker):
 			a_path (str or pathlib.Path): the path that this object must check
 
 		Raises:
-			TypeError: if a_path is not None and not an instance of str or
-				pathlib.Path
+			TypeError: if a_path is not None and not an instance of
+				pathlib.Path or str
 		"""
 		if a_path is None:
 			self._path = a_path

@@ -54,9 +54,9 @@ class PathChecker:
 		The extension that the checked path is supposed to have, stored as a
 		list of suffixes, which are strings. For example, a PDF file's suffix
 		list is ['.pdf']; a Linux archive's suffix list can be
-		['.tar', '.gz']. Every extension must start with '.'. The suffixes can
-		be given in a tuple. If this property is set to None, it will be an
-		empty list.
+		['.tar', '.gz']. Every suffix must start with '.'. The suffixes can be
+		given in a tuple. If this property is set to None, it will be an empty
+		list.
 		"""
 		return self._extension
 
@@ -90,7 +90,7 @@ class PathChecker:
 	def get_file_name(self, with_exten=True):
 		"""
 		Provides the name of the file that path points to. The returned name
-		includes the extension if and only if with_exten is True.
+		includes the extension if with_exten is True.
 
 		Args:
 			with_exten (bool): if True, the returned file name will contain
@@ -126,8 +126,8 @@ class PathChecker:
 				None.
 			extension (str): the extension to append to the new stem in order
 				to make the name. Each suffix must comply with the
-				specification of property extension. If None, self.extension
-				is appended. Defaults to None.
+				specification of property extension. If None, extension is
+				appended. Defaults to None.
 
 		Returns:
 			str: a new file name with the specified additions
@@ -157,7 +157,7 @@ class PathChecker:
 				None.
 
 		Returns:
-			str: a new stem with the specified additions
+			str: a new file stem with the specified additions
 		"""
 		stem = self.get_file_name(False)
 
@@ -187,7 +187,7 @@ class PathChecker:
 		Indicates whether path points to an existent directory or file.
 
 		Returns:
-			bool: True if the path exists, False otherwise
+			bool: True if path exists, False otherwise
 		"""
 		return self.path.exists()
 
@@ -196,7 +196,7 @@ class PathChecker:
 		Indicates whether path points to a directory.
 
 		Returns:
-			bool: True if path is a directory, False otherwise
+			bool: True if path exists and is a directory, False otherwise
 		"""
 		return self.path.is_dir()
 
@@ -205,7 +205,7 @@ class PathChecker:
 		Indicates whether path points to a file.
 
 		Returns:
-			bool: True if path is a file, False otherwise
+			bool: True if path exists and is a file, False otherwise
 		"""
 		return self.path.is_file()
 
