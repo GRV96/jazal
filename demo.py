@@ -1,50 +1,48 @@
-from path_checker import PathChecker
+from arg_path_checker import ArgPathChecker
+from path_checker import make_default_file_name, make_default_path
 from pathlib import Path
 from sys import argv, exit
 
 
-_PDF_EXTENSION = ".pdf"
-_TXT_EXTENSION = ".txt"
-
-
 if __name__ == "__main__":
+	AFTER_DFLT_STEM = "_file_name"
+	ERROR_INTRO = "ERROR! "
+
 	# Input path checks
 	try:
-		input_path = Path(argv[1])
-		input_checker = PathChecker(input_path, [_PDF_EXTENSION])
+		input_checker = ArgPathChecker(None, [".pdf"], "Argument 1")
+		input_path = Path(argv[1]) # Can raise IndexError.
+		input_checker.path = input_path
+
+		input_checker.check_path_exists()
+		input_checker.check_extension_correct()
 
 	except IndexError:
-		print("ERROR! The path to a file with the extension " + _PDF_EXTENSION
-			+ " must be provided as the first argument.")
+		# Argument 1 not given
+		print(ERROR_INTRO + input_checker.make_missing_arg_msg())
 		exit()
 
-	if not input_checker.path_exists():
-		print("ERROR! " + str(input_path) + " does not exist.")
-		exit()
-
-	if not input_checker.extension_is_correct(): # False if not a file
-		print("ERROR! The first argument must be the "
-			+ "path to a file with the extension "
-			+ input_checker.extension_to_str() + ".")
+	except Exception as e:
+		print(ERROR_INTRO + str(e))
 		exit()
 
 	# Output path checks
 	try:
-		output_path = Path(argv[2])
-		output_checker = PathChecker(output_path, [_TXT_EXTENSION])
+		output_checker = ArgPathChecker(None, [".txt"], "Argument 2")
+		output_path = Path(argv[2]) # Can raise IndexError.
+		output_checker.path = output_path
 
 		if output_checker.path_is_dir():
-			output_path = output_path/(
-				input_checker.make_file_stem(after_stem="_file_name")
-				+ output_checker.extension_to_str())
+			output_path = output_path/make_default_file_name(
+				input_checker, output_checker, None, AFTER_DFLT_STEM)
 
 		elif not output_checker.extension_is_correct():
-			output_path = output_path.with_suffix(_TXT_EXTENSION)
+			output_path = output_checker.path_with_correct_exten()
 
 	except IndexError:
-		output_path = input_path.with_name(
-			input_checker.make_file_stem(after_stem="_file_name")
-			+ _TXT_EXTENSION)
+		# Argument 2 not given
+		output_path = make_default_path(
+			input_checker, output_checker, None, AFTER_DFLT_STEM)
 
 	# Real work
 	input_file_name = input_path.name
