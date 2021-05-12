@@ -95,15 +95,26 @@ class ArgPathChecker(PathChecker):
 		return self.arg_name + ": the path to a file with extension '"\
 			+ self.extension_to_str() + "' must be provided."
 
-	def path_with_correct_exten(self):
+	def name_with_correct_exten(self):
 		"""
-		Creates a copy of path and replaces its extension with self.extension.
+		Creates a file name by appending the expected extension to path's
+		stem.
 
 		Returns:
-			pathlib.Path: a copy of path with the correct extension
+			str: path's file name with a correct extension
 		"""
 		stem = self.get_file_name(False)
-		return self.path.parents[0]/(stem + self.extension_to_str())
+		return stem + self.extension_to_str()
+
+	def path_with_correct_exten(self):
+		"""
+		Creates a path by replacing self.path's extension with self.extension.
+
+		Returns:
+			pathlib.Path: a path identical to self.path, but with the expected
+				extension
+		"""
+		return self.path.parents[0]/self.name_with_correct_exten()
 
 	def _set_path(self, a_path):
 		"""
