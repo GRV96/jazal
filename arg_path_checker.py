@@ -122,4 +122,10 @@ class ArgPathChecker(PathChecker):
 			self._path = a_path
 
 		else:
-			PathChecker._set_path(self, a_path)
+			try:
+				PathChecker._set_path(self, a_path)
+
+			except TypeError:
+				# A different message that tells None is an acceptable value.
+				raise TypeError("The given path must be None or "\
+					+ "an instance of pathlib.Path or str.")
