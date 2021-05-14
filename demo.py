@@ -1,5 +1,7 @@
-from arg_path_checker import ArgPathChecker
-from path_checker import make_default_file_name, make_default_path
+from path_checker import\
+	ArgPathChecker,\
+	make_default_file_name,\
+	make_default_path
 from pathlib import Path
 from sys import argv, exit
 

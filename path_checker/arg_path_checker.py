@@ -1,4 +1,4 @@
-from path_checker import PathChecker
+from .path_checker import PathChecker
 
 
 class ArgPathChecker(PathChecker):
