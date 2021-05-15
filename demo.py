@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
 		if output_checker.path_is_dir():
 			output_path = output_path/make_default_file_name(
-				input_checker, output_checker, None, AFTER_DFLT_STEM)
+				input_checker, output_checker, after_stem=AFTER_DFLT_STEM)
 
 		elif not output_checker.extension_is_correct():
 			output_path = output_checker.path_with_correct_exten()
@@ -44,7 +44,7 @@ if __name__ == "__main__":
 	except IndexError:
 		# Argument 2 not given
 		output_path = make_default_path(
-			input_checker, output_checker, None, AFTER_DFLT_STEM)
+			input_checker, output_checker, after_stem=AFTER_DFLT_STEM)
 
 	# Real work
 	input_file_name = input_path.name
