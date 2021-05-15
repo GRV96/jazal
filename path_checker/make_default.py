@@ -1,6 +1,7 @@
 """
-The functions in this module allow to make default values for path arguments
-that are missing or invalid.
+If a script or a function requires a path as an argument, it probably needs to
+cope with missing and invalid paths. The functions in this module allow to
+make default values for this purpose.
 """
 
 
