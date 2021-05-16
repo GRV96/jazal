@@ -118,7 +118,7 @@ class PathChecker:
 		stem = self.make_altered_stem(before_stem, after_stem)
 
 		if extension is None:
-			name = stem + self.extension
+			name = stem + self.extension_to_str()
 		else:
 			name = stem + extension
 
