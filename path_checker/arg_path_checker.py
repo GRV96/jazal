@@ -31,7 +31,7 @@ class ArgPathChecker(PathChecker):
 				pathlib.Path
 		"""
 		PathChecker.__init__(self, a_path, suffixes)
-		self.arg_name = arg_name
+		self._arg_name = arg_name
 
 	def __eq__(self, other):
 		if not isinstance(other, self.__class__):
@@ -52,10 +52,6 @@ class ArgPathChecker(PathChecker):
 		property is the name of that argument.
 		"""
 		return self._arg_name
-
-	@arg_name.setter
-	def arg_name(self, name):
-		self._arg_name = name
 
 	def check_path_exists(self):
 		"""
