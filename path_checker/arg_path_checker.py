@@ -13,16 +13,16 @@ class ArgPathChecker(PathChecker):
 
 	def __init__(self, a_path, suffixes, arg_name):
 		"""
-		The constructor needs a path, a list of suffixes that will make the
-		expected extension and the name of the argument whose value is the
-		checked path. In order to know which values are accepted, see the
-		documentation of PathChecker's properties path and extension.
+		The constructor needs a path, a list or tuple of suffixes that will
+		make the expected extension and the name of the argument whose value
+		is the checked path. In order to know which values are accepted, see
+		the documentation of PathChecker's properties path and extension.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
 				check. It can be None.
-			suffixes (list or tuple): the extension that path is supposed to
-				have
+			suffixes (list or tuple): the extension that the path is supposed
+				to have. If None, the extension will be an empty tuple.
 			arg_name (str): the name of the argument whose value is the
 				checked path
 

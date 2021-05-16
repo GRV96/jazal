@@ -3,7 +3,7 @@ from pathlib import Path
 
 class PathChecker:
 	"""
-	This class contains a pathlib.Path object (property path) and a list of
+	This class contains a pathlib.Path object (property path) and a tuple of
 	suffixes (property extension) that the path is supposed to have.
 	PathChecker can verify whether the path has the right extension, whether
 	it exists and whether it is a directory or a file.
@@ -14,20 +14,21 @@ class PathChecker:
 
 	def __init__(self, a_path, suffixes):
 		"""
-		The constructor needs a path and a list of suffixes that will make the
-		expected extension. In order to know which values are accepted, see
-		the documentation of properties path and extension.
+		The constructor needs a path and a list or tuple of suffixes that will
+		make the expected extension. In order to know which values are
+		accepted, see the documentation of properties path and extension.
 
 		Args:
-			a_path (pathlib.Path or str): the path that this instance will check
+			a_path (pathlib.Path or str): the path that this instance will
+				check
 			suffixes (list or tuple): the extension that the path is supposed
-				to have
+				to have. If None, the extension will be an empty tuple.
 
 		Raises:
 			TypeError: if a_path is not an instance of str or pathlib.Path
 		"""
 		self.path = a_path
-		self.extension = suffixes
+		self._set_extension(suffixes)
 
 	def __eq__(self, other):
 		if not isinstance(other, self.__class__):
@@ -39,34 +40,15 @@ class PathChecker:
 		return self.__class__.__name__ + "('" + str(self.path) + "', "\
 			+ str(self.extension) + ")"
 
-	def add_suffix(self, suffix):
-		"""
-		Adds a suffix to the end of property extension.
-
-		Args:
-			suffix (str): the suffix to add
-		"""
-		self.extension.append(suffix)
-
 	@property
 	def extension(self):
 		"""
 		The extension that the checked path is supposed to have, stored as a
-		list of suffixes, which are strings. For example, a PDF file's suffix
-		list is ['.pdf']; a Linux archive's suffix list can be
-		['.tar', '.gz']. Every suffix must start with '.'. The suffixes can be
-		given in a tuple. If this property is set to None, it will be an empty
-		list.
+		tuple of suffixes, which are strings. For example, a PDF file's suffix
+		tuple is ('.pdf'); a Linux archive's suffix tuple can be
+		('.tar', '.gz'). Every suffix starts with '.'.
 		"""
 		return self._extension
-
-	@extension.setter
-	def extension(self, suffixes):
-		if suffixes is None:
-			self._extension = []
-
-		else:
-			self._extension = list(suffixes)
 
 	def extension_is_correct(self):
 		"""
@@ -76,7 +58,8 @@ class PathChecker:
 		Returns:
 			bool: True if path has the right extension, False otherwise
 		"""
-		return self.path.suffixes == self.extension
+		# pathlib.Path objects store their extension in a list.
+		return tuple(self.path.suffixes) == self.extension
 
 	def extension_to_str(self):
 		"""
@@ -209,23 +192,24 @@ class PathChecker:
 		"""
 		return self.path.is_file()
 
-	def remove_suffix(self, suffix):
+	def _set_extension(self, suffixes):
 		"""
-		Removes a suffix from extension. If extension does not contain suffix,
-		nothing happens.
+		Sets the extension that the path checked by this instance is supposed
+		to have. See the documentation of property extension. If the extension
+		is set to None, it will be an empty tuple.
 
 		Args:
-			suffix (str): the suffix to remove from extension
-
-		Returns:
-			bool: True if extension contained suffix, False otherwise
+			suffixes (list or tuple): the extension that path is supposed to
+				have. If it is a list, it will be converted to a tuple.
 		"""
-		try:
-			self.extension.remove(suffix)
-			return True
+		if suffixes is None:
+			self._extension = ()
 
-		except ValueError:
-			return False
+		elif isinstance(suffixes, tuple):
+			self._extension = suffixes
+
+		else:
+			self._extension = tuple(suffixes)
 
 	def _set_path(self, a_path):
 		"""
