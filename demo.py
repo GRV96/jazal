@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
 	# Input path checks
 	try:
-		input_checker = ArgPathChecker(None, [".pdf"], "Argument 1")
+		input_checker = ArgPathChecker(None, (".pdf",), "Argument 1")
 		input_path = Path(argv[1]) # Can raise IndexError.
 		input_checker.path = input_path
 
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
 	# Output path checks
 	try:
-		output_checker = ArgPathChecker(None, [".txt"], "Argument 2")
+		output_checker = ArgPathChecker(None, (".txt",), "Argument 2")
 		output_path = Path(argv[2]) # Can raise IndexError.
 		output_checker.path = output_path
 
