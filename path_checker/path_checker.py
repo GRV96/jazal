@@ -70,26 +70,30 @@ class PathChecker:
 		"""
 		return "".join(self.extension)
 
-	def get_file_name(self, with_exten=True):
+	def get_file_name(self):
 		"""
-		Provides the name of the file that path points to. The returned name
-		includes the extension if with_exten is True.
-
-		Args:
-			with_exten (bool): if True, the returned file name will contain
-				the extension. Defaults to True.
+		Provides the name of the file that path points to.
 
 		Returns:
 			str: the name of the file that path points to
 		"""
-		file_name = self.path.name
+		return self.path.name
+
+	def get_file_stem(self):
+		"""
+		Provides the stem of the file that path points to.
+
+		Returns:
+			str: the stem of the file that path points to
+		"""
+		file_stem = self.path.name
 
 		actual_suffixes = self.path.suffixes
-		if not with_exten and len(actual_suffixes) > 0:
-			exten_index = file_name.index(actual_suffixes[0])
-			file_name = file_name[:exten_index]
+		if len(actual_suffixes) > 0:
+			exten_index = file_stem.index(actual_suffixes[0])
+			file_stem = file_stem[:exten_index]
 
-		return file_name
+		return file_stem
 
 	def make_altered_name(self, before_stem=None,
 			after_stem=None, extension=None):
@@ -142,7 +146,7 @@ class PathChecker:
 		Returns:
 			str: a new file stem with the specified additions
 		"""
-		stem = self.get_file_name(False)
+		stem = self.get_file_stem()
 
 		if before_stem is not None:
 			stem = before_stem + stem

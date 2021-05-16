@@ -99,8 +99,7 @@ class ArgPathChecker(PathChecker):
 		Returns:
 			str: path's file name with a correct extension
 		"""
-		stem = self.get_file_name(False)
-		return stem + self.extension_to_str()
+		return self.get_file_stem() + self.extension_to_str()
 
 	def path_with_correct_exten(self):
 		"""
