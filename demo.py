@@ -16,8 +16,8 @@ if __name__ == "__main__":
 		input_path = Path(argv[1]) # Can raise IndexError.
 		input_checker.path = input_path
 
-		input_checker.check_path_exists()
-		input_checker.check_extension_correct()
+		input_checker.check_path_exists() # Can raise FileNotFoundError.
+		input_checker.check_extension_correct() # Can raise ValueError.
 
 	except IndexError:
 		# Argument 1 not given
