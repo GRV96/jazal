@@ -1,6 +1,9 @@
 from pathlib import Path
 
 
+_PATH_STR_TYPES = (Path, str)
+
+
 class PathChecker:
 	"""
 	This class contains a pathlib.Path object (property path) and a tuple of
@@ -227,10 +230,7 @@ class PathChecker:
 		Raises:
 			TypeError: if a_path is not an instance of pathlib.Path or str
 		"""
-		if isinstance(a_path, Path):
-			self._path = a_path
-
-		elif isinstance(a_path, str):
+		if isinstance(a_path, _PATH_STR_TYPES):
 			self._path = Path(a_path)
 
 		else:
