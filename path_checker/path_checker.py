@@ -46,10 +46,10 @@ class PathChecker:
 	@property
 	def extension(self):
 		"""
-		The extension that the checked path is supposed to have, stored as a
-		tuple of suffixes, which are strings. For example, a PDF file's suffix
-		tuple is ('.pdf'); a Linux archive's suffix tuple can be
-		('.tar', '.gz'). Every suffix starts with '.'.
+		This read-only property is the extension that the checked path is
+		supposed to have, stored as a tuple of suffixes, which are strings.
+		For example, a PDF file's suffix tuple is ('.pdf',); a Linux archive's
+		suffix tuple can be ('.tar', '.gz'). Every suffix starts with '.'.
 		"""
 		return self._extension
 

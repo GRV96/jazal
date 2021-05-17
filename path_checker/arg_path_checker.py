@@ -48,8 +48,8 @@ class ArgPathChecker(PathChecker):
 	@property
 	def arg_name(self):
 		"""
-		Property path is the value of a function's or script's argument. This
-		property is the name of that argument.
+		This read-only property is the name of the function or script argument
+		whose value is property path.
 		"""
 		return self._arg_name
 
