@@ -14,6 +14,7 @@ if __name__ == "__main__":
 	try:
 		input_checker = ArgPathChecker(None, (".pdf",), "Argument 1")
 		input_path = Path(argv[1]) # Can raise IndexError.
+		# ArgPathChecker cannot work if the path is not set.
 		input_checker.path = input_path
 
 		input_checker.check_path_exists() # Can raise FileNotFoundError.
@@ -32,6 +33,7 @@ if __name__ == "__main__":
 	try:
 		output_checker = ArgPathChecker(None, (".txt",), "Argument 2")
 		output_path = Path(argv[2]) # Can raise IndexError.
+		# ArgPathChecker cannot work if the path is not set.
 		output_checker.path = output_path
 
 		if output_checker.path_is_dir():
