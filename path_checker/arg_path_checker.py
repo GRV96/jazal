@@ -78,19 +78,6 @@ class ArgPathChecker(PathChecker):
 				+ " must be the path to a file with the extension '"
 				+ self.extension_to_str() + "'.")
 
-	def make_missing_arg_msg(self):
-		"""
-		The message created by this method tells that the argument named
-		self.arg_name, the path to a file with extension self.extension, is
-		needed. It is relevant if the argument is missing. This method works
-		even when path is None.
-
-		Returns:
-			str: a message telling that the argument is needed
-		"""
-		return self.arg_name + ": the path to a file with extension '"\
-			+ self.extension_to_str() + "' must be provided."
-
 	def name_with_correct_exten(self):
 		"""
 		Creates a file name by appending the expected extension to path's
