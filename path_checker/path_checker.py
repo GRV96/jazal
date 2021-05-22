@@ -1,4 +1,5 @@
 from pathlib import Path
+from .path_util import get_file_stem
 
 
 _PATH_STR_TYPES = (Path, str)
@@ -85,79 +86,11 @@ class PathChecker:
 	def get_file_stem(self):
 		"""
 		Provides the stem of the file that path points to.
-
 		Returns:
 			str: the stem of the file that path points to
 		"""
-		file_stem = self.path.name
+		return get_file_stem(self.path)
 
-		actual_suffixes = self.path.suffixes
-		if len(actual_suffixes) > 0:
-			exten_index = file_stem.index(actual_suffixes[0])
-			file_stem = file_stem[:exten_index]
-
-		return file_stem
-
-	def make_altered_name(self, before_stem=None,
-			after_stem=None, extension=None):
-		"""
-		Creates a file name by adding a string to the beginning and/or the end
-		of path's stem and appending an extension to the new stem. If
-		before_stem and after_stem are None, the new stem is identical to
-		path's stem. This method does not change path. Use make_altered_stem
-		instead if you do not want to append an extension.
-
-		Args:
-			before_stem (str): the string to add to the beginning of path's
-				stem. If it is None, nothing is added to the stem's beginning.
-				Defaults to None.
-			after_stem (str): the string to add to the end of path's stem. If
-				it is None, nothing is added to the stem's end. Defaults to
-				None.
-			extension (str): the extension to append to the new stem in order
-				to make the name. Each suffix must comply with the
-				specification of property extension. If None, extension is
-				appended. Defaults to None.
-
-		Returns:
-			str: a new file name with the specified additions
-		"""
-		stem = self.make_altered_stem(before_stem, after_stem)
-
-		if extension is None:
-			name = stem + self.extension_to_str()
-		else:
-			name = stem + extension
-
-		return name
-
-	def make_altered_stem(self, before_stem=None, after_stem=None):
-		"""
-		Creates a file stem by adding a string to the beginning and/or the end
-		of path's stem. If before_stem and after_stem are None, path's stem is
-		returned. This method does not change path. Use make_altered_name
-		instead to append an extension.
-
-		Args:
-			before_stem (str): the string to add to the beginning of path's
-				stem. If it is None, nothing is added to the stem's beginning.
-				Defaults to None.
-			after_stem (str): the string to add to the end of path's stem. If
-				it is None, nothing is added to the stem's end. Defaults to
-				None.
-
-		Returns:
-			str: a new file stem with the specified additions
-		"""
-		stem = self.get_file_stem()
-
-		if before_stem is not None:
-			stem = before_stem + stem
-
-		if after_stem is not None:
-			stem += after_stem
-
-		return stem
 
 	@property
 	def path(self):
