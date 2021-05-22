@@ -116,7 +116,7 @@ class ArgPathChecker(PathChecker):
 
 		else:
 			try:
-				PathChecker._set_path(self, a_path)
+				PathChecker._set_path(self, a_path) # Can raise a TypeError.
 
 			except TypeError:
 				# A different message that tells None is an acceptable value.

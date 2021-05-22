@@ -43,11 +43,11 @@ def get_file_stem(path):
 def make_altered_name(path, before_stem=None,
 		after_stem=None, extension=None):
 	"""
-	Creates a file name by adding a string to the beginning and/or the end
-	of a file path's stem and appending an extension to the new stem. If
-	before_stem and after_stem are None, the new stem is identical to
-	path's stem. This function does not change the given path. Use
-	make_altered_stem instead if you do not want to append an extension.
+	Creates a file name by adding a string to the beginning and/or the end of
+	a file path's stem and appending an extension to the new stem. If
+	before_stem and after_stem are None, the new stem is identical to path's
+	stem. This function does not change the given path. Use make_altered_stem
+	instead if you do not want to append an extension.
 
 	Args:
 		path (pathlib.Path): the file path whose name is to be altered
@@ -77,10 +77,10 @@ def make_altered_name(path, before_stem=None,
 def make_altered_path(path, before_stem=None,
 		after_stem=None, extension=None):
 	"""
-	Creates a file path by adding a string to the beginning and/or the end
-	of a file path's stem and appending an extension to the new stem. If
-	before_stem and after_stem are None, the new stem is identical to
-	path's stem. This function does not change the given path.
+	Creates a file path by adding a string to the beginning and/or the end of
+	a file path's stem and appending an extension to the new stem. If
+	before_stem and after_stem are None, the new stem is identical to path's
+	stem. This function does not change the given path.
 
 	Args:
 		path (pathlib.Path): the file path to altered

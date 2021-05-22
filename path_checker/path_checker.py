@@ -86,6 +86,7 @@ class PathChecker:
 	def get_file_stem(self):
 		"""
 		Provides the stem of the file that path points to.
+
 		Returns:
 			str: the stem of the file that path points to
 		"""
