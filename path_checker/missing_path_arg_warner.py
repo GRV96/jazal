@@ -1,13 +1,13 @@
-from .arg_path_checker import ArgPathChecker
-from .path_checker import PathChecker
 from .extension_possessor import ExtensionPossessor
+from .path_arg_checker import PathArgChecker
+from .path_checker import PathChecker
 
 
-class MissingArgPathWarner(ExtensionPossessor):
+class MissingPathArgWarner(ExtensionPossessor):
 	"""
 	This class' main purpose is to warn the programmer that a path was not
 	provided to a function or a script as an argument. If a path is given, the
-	class allows to instantiate PathChecker or ArgPathChecker. In order to
+	class allows to instantiate PathChecker or PathArgChecker. In order to
 	work, this class needs the name of the argument that the path is the value
 	of (property arg_name) and the extension that the path is supposed to have
 	(property extension).
@@ -38,9 +38,9 @@ class MissingArgPathWarner(ExtensionPossessor):
 		"""
 		return self._arg_name
 
-	def make_arg_path_checker(self, path):
+	def make_path_arg_checker(self, path):
 		"""
-		Creates an ArgPathChecker instance with properties extension and
+		Creates a PathArgChecker instance with properties extension and
 		arg_name and the given file path.
 
 		Args:
@@ -48,9 +48,9 @@ class MissingArgPathWarner(ExtensionPossessor):
 				path argument associated with this object.
 
 		Returns:
-			ArgPathChecker: an object able to verify the path argument's value
+			PathArgChecker: an object able to verify the path argument's value
 		"""
-		return ArgPathChecker(path, self.extension, self.arg_name)
+		return PathArgChecker(path, self.extension, self.arg_name)
 
 	def make_missing_arg_msg(self):
 		"""

@@ -1,6 +1,6 @@
 from path_checker import\
-	ArgPathChecker,\
-	MissingArgPathWarner,\
+	MissingPathArgWarner,\
+	PathArgChecker,\
 	make_altered_name,\
 	make_altered_path
 from pathlib import Path
@@ -12,10 +12,10 @@ if __name__ == "__main__":
 	ERROR_INTRO = "ERROR! "
 
 	# Input path checks
-	missing_in_warner = MissingArgPathWarner("Argument 1", (".pdf",))
+	missing_in_warner = MissingPathArgWarner("Argument 1", (".pdf",))
 	try:
 		input_path = Path(argv[1]) # Can raise an IndexError.
-		input_checker = missing_in_warner.make_arg_path_checker(input_path)
+		input_checker = missing_in_warner.make_path_arg_checker(input_path)
 
 		input_checker.check_path_exists() # Can raise a FileNotFoundError.
 		input_checker.check_extension_correct() # Can raise a ValueError.
@@ -30,10 +30,10 @@ if __name__ == "__main__":
 		exit()
 
 	# Output path checks
-	missing_out_warner = MissingArgPathWarner("Argument 2", (".txt",))
+	missing_out_warner = MissingPathArgWarner("Argument 2", (".txt",))
 	try:
 		output_path = Path(argv[2]) # Can raise an IndexError.
-		output_checker = missing_out_warner.make_arg_path_checker(output_path)
+		output_checker = missing_out_warner.make_path_arg_checker(output_path)
 
 		if output_checker.path_is_dir():
 			output_path = output_path/make_altered_name(
