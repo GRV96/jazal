@@ -85,7 +85,7 @@ class PathArgChecker(PathChecker):
 		stem.
 
 		Returns:
-			str: path's file name with a correct extension
+			str: path's file name with the expected extension
 		"""
 		return self.get_file_stem() + self.extension_to_str()
 
