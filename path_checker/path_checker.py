@@ -35,16 +35,16 @@ class PathChecker(ExtensionPossessor):
 				if suffixes is not None, nor a list or a tuple
 		"""
 		ExtensionPossessor.__init__(self, suffixes)
-		self.path = a_path
+		self._set_path(a_path)
 
 	def __eq__(self, other):
 		if not isinstance(other, self.__class__):
 			return False
 
-		return self.path == other.path and self.extension == other.extension
+		return self._path == other._path and self.extension == other.extension
 
 	def __repr__(self):
-		return self.__class__.__name__ + "('" + str(self.path) + "', "\
+		return self.__class__.__name__ + "('" + str(self._path) + "', "\
 			+ str(self.extension) + ")"
 
 	def extension_is_correct(self):
@@ -56,7 +56,7 @@ class PathChecker(ExtensionPossessor):
 			bool: True if path has the right extension, False otherwise
 		"""
 		# pathlib.Path objects store their extension in a list.
-		return tuple(self.path.suffixes) == self.extension
+		return tuple(self._path.suffixes) == self.extension
 
 	def get_file_name(self):
 		"""
@@ -65,7 +65,7 @@ class PathChecker(ExtensionPossessor):
 		Returns:
 			str: the name of the file that path points to
 		"""
-		return self.path.name
+		return self._path.name
 
 	def get_file_stem(self):
 		"""
@@ -74,20 +74,15 @@ class PathChecker(ExtensionPossessor):
 		Returns:
 			str: the stem of the file that path points to
 		"""
-		return get_file_stem(self.path)
+		return get_file_stem(self._path)
 
 	@property
 	def path(self):
 		"""
-		The path that this object checks. It must be an instance of
-		pathlib.Path. If it is set to a string, that string will be converted
-		to a pathlib.Path object.
+		This read-only property returns a copy of the path that this object
+		checks. It is an instance of pathlib.Path.
 		"""
-		return self._path
-
-	@path.setter
-	def path(self, a_path):
-		self._set_path(a_path)
+		return Path(self._path)
 
 	def path_exists(self):
 		"""
@@ -96,7 +91,7 @@ class PathChecker(ExtensionPossessor):
 		Returns:
 			bool: True if path exists, False otherwise
 		"""
-		return self.path.exists()
+		return self._path.exists()
 
 	def path_is_dir(self):
 		"""
@@ -105,7 +100,7 @@ class PathChecker(ExtensionPossessor):
 		Returns:
 			bool: True if path exists and is a directory, False otherwise
 		"""
-		return self.path.is_dir()
+		return self._path.is_dir()
 
 	def path_is_file(self):
 		"""
@@ -114,13 +109,14 @@ class PathChecker(ExtensionPossessor):
 		Returns:
 			bool: True if path exists and is a file, False otherwise
 		"""
-		return self.path.is_file()
+		return self._path.is_file()
 
 	def _set_path(self, a_path):
 		"""
-		Sets the path checked by this instance. The path must be an instance
-		of pathlib.Path. If the given path is a string, it will be converted
-		to a pathlib.Path object.
+		Sets the path checked by this object. The path must be an instance of
+		pathlib.Path. If the given path is a string, it will be converted to a
+		pathlib.Path object. In either case, the stored path is a new instance
+		of pathlib.Path.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this object must check

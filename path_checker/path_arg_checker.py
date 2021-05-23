@@ -38,17 +38,12 @@ class PathArgChecker(PathChecker):
 		if not isinstance(other, self.__class__):
 			return False
 
-		return self.path == other.path\
+		return self._path == other._path\
 			and self.extension == other.extension\
 			and self.arg_name == other.arg_name
 
 	def __repr__(self):
-		if self.path is None:
-			path_str = "None"
-		else:
-			path_str = "'" + str(self.path) + "'"
-
-		return self.__class__.__name__ + "(" + path_str + ", "\
+		return self.__class__.__name__ + "('" + str(self._path) + "', "\
 			+ str(self.extension) + ", '" + self.arg_name + "')"
 
 	@property
@@ -69,7 +64,7 @@ class PathArgChecker(PathChecker):
 		"""
 		if not self.path_exists():
 			raise FileNotFoundError(self.arg_name + ": "
-				+ str(self.path) + " does not exist.")
+				+ str(self._path) + " does not exist.")
 
 	def check_extension_correct(self):
 		"""
@@ -102,29 +97,4 @@ class PathArgChecker(PathChecker):
 			pathlib.Path: a path identical to self.path, but with the expected
 				extension
 		"""
-		return self.path.parents[0]/self.name_with_correct_exten()
-
-	def _set_path(self, a_path):
-		"""
-		Sets the path checked by this instance. The path must be an instance
-		of pathlib.Path. If the given path is a string, it will be converted
-		to a pathlib.Path object. The path can be set to None.
-
-		Args:
-			a_path (str or pathlib.Path): the path that this object must check
-
-		Raises:
-			TypeError: if a_path is not None and not an instance of
-				pathlib.Path or str
-		"""
-		if a_path is None:
-			self._path = a_path
-
-		else:
-			try:
-				PathChecker._set_path(self, a_path) # Can raise a TypeError.
-
-			except TypeError:
-				# A different message that tells None is an acceptable value.
-				raise TypeError("The given path must be None or "\
-					+ "an instance of pathlib.Path or str.")
+		return self._path.parents[0]/self.name_with_correct_exten()
