@@ -43,7 +43,12 @@ class PathArgChecker(PathChecker):
 			and self.arg_name == other.arg_name
 
 	def __repr__(self):
-		return self.__class__.__name__ + "('" + str(self.path) + "', "\
+		if self.path is None:
+			path_str = "None"
+		else:
+			path_str = "'" + str(self.path) + "'"
+
+		return self.__class__.__name__ + "(" + path_str + ", "\
 			+ str(self.extension) + ", '" + self.arg_name + "')"
 
 	@property
