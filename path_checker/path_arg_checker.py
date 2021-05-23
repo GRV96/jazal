@@ -5,19 +5,15 @@ class PathArgChecker(PathChecker):
 	"""
 	In this subclass of PathChecker, the path is considered as an argument
 	given to a fucntion or a script. The class provides methods to warn the
-	user that path is invalid and others to make a correct path. Property path
-	can be set to None so that this class can be instantiated even when a path
-	is not provided. Warning: most methods will raise an exception if they are
-	called while path is None.
+	user that path is invalid and others to make a correct path.
 	"""
 
 	def __init__(self, a_path, suffixes, arg_name):
 		"""
 		The constructor needs a path, a list or tuple of suffixes that will
 		make the expected extension and the name of the argument whose value
-		is the checked path. In order to know which values are accepted, see
-		the documentation of superclass PathChecker's property path and
-		superclass ExtensionPossessor.
+		is the checked path. See the documentation of superclass
+		ExtensionPossessor for a description of valid extensions.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will

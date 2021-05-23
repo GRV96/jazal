@@ -38,6 +38,19 @@ class MissingPathArgWarner(ExtensionPossessor):
 		"""
 		return self._arg_name
 
+	def make_missing_arg_msg(self):
+		"""
+		The message created by this method tells that the argument named
+		<argument name>, the path to a file with extension
+		<expected extension>, is needed. It is relevant if the argument is
+		missing.
+
+		Returns:
+			str: a message telling that the argument is needed
+		"""
+		return self._arg_name + ": the path to a file with extension '"\
+			+ "".join(self._extension) + "' must be provided."
+
 	def make_path_arg_checker(self, path):
 		"""
 		Creates a PathArgChecker instance with properties extension and
@@ -51,19 +64,6 @@ class MissingPathArgWarner(ExtensionPossessor):
 			PathArgChecker: an object able to verify the path argument's value
 		"""
 		return PathArgChecker(path, self.extension, self.arg_name)
-
-	def make_missing_arg_msg(self):
-		"""
-		The message created by this method tells that the argument named
-		<argument name>, the path to a file with extension
-		<expected extension>, is needed. It is relevant if the argument is
-		missing.
-
-		Returns:
-			str: a message telling that the argument is needed
-		"""
-		return self._arg_name + ": the path to a file with extension '"\
-			+ "".join(self._extension) + "' must be provided."
 
 	def make_path_checker(self, path):
 		"""

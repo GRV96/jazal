@@ -20,9 +20,8 @@ class PathChecker(ExtensionPossessor):
 	def __init__(self, a_path, suffixes):
 		"""
 		The constructor needs a path and a list or tuple of suffixes that will
-		make the expected extension. In order to know which values are
-		accepted, see the documentation of property path and superclass
-		ExtensionPossessor.
+		make the expected extension. See the documentation of superclass
+		ExtensionPossessor for a description of valid extensions.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
