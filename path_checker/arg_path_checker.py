@@ -16,7 +16,8 @@ class ArgPathChecker(PathChecker):
 		The constructor needs a path, a list or tuple of suffixes that will
 		make the expected extension and the name of the argument whose value
 		is the checked path. In order to know which values are accepted, see
-		the documentation of PathChecker's properties path and extension.
+		the documentation of superclass PathChecker's property path and
+		superclass ExtensionPossessor.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
@@ -27,8 +28,8 @@ class ArgPathChecker(PathChecker):
 				checked path
 
 		Raises:
-			TypeError: if a_path is not None and not an instance of str or
-				pathlib.Path
+			TypeError: if a_path is not an instance of str or pathlib.Path or
+				if suffixes is not None, nor a list or a tuple
 		"""
 		PathChecker.__init__(self, a_path, suffixes)
 		self._arg_name = arg_name

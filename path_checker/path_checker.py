@@ -1,11 +1,12 @@
 from pathlib import Path
 from .path_util import get_file_stem
+from .extension_possessor import ExtensionPossessor
 
 
 _PATH_STR_TYPES = (Path, str)
 
 
-class PathChecker:
+class PathChecker(ExtensionPossessor):
 	"""
 	This class contains a pathlib.Path object (property path) and a tuple of
 	suffixes (property extension) that the path is supposed to have.
@@ -20,7 +21,8 @@ class PathChecker:
 		"""
 		The constructor needs a path and a list or tuple of suffixes that will
 		make the expected extension. In order to know which values are
-		accepted, see the documentation of properties path and extension.
+		accepted, see the documentation of property path and superclass
+		ExtensionPossessor.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
@@ -29,10 +31,11 @@ class PathChecker:
 				to have. If None, the extension will be an empty tuple.
 
 		Raises:
-			TypeError: if a_path is not an instance of str or pathlib.Path
+			TypeError: if a_path is not an instance of str or pathlib.Path or
+				if suffixes is not None, nor a list or a tuple
 		"""
+		ExtensionPossessor.__init__(self, suffixes)
 		self.path = a_path
-		self._set_extension(suffixes)
 
 	def __eq__(self, other):
 		if not isinstance(other, self.__class__):
@@ -44,16 +47,6 @@ class PathChecker:
 		return self.__class__.__name__ + "('" + str(self.path) + "', "\
 			+ str(self.extension) + ")"
 
-	@property
-	def extension(self):
-		"""
-		This read-only property is the extension that the checked path is
-		supposed to have, stored as a tuple of suffixes, which are strings.
-		For example, a PDF file's suffix tuple is ('.pdf',); a Linux archive's
-		suffix tuple can be ('.tar', '.gz'). Every suffix starts with '.'.
-		"""
-		return self._extension
-
 	def extension_is_correct(self):
 		"""
 		Indicates whether path's extension matches the expected extension,
@@ -64,15 +57,6 @@ class PathChecker:
 		"""
 		# pathlib.Path objects store their extension in a list.
 		return tuple(self.path.suffixes) == self.extension
-
-	def extension_to_str(self):
-		"""
-		Concatenates the suffixes that make property extension.
-
-		Returns:
-			str: extension as one string
-		"""
-		return "".join(self.extension)
 
 	def get_file_name(self):
 		"""
@@ -91,7 +75,6 @@ class PathChecker:
 			str: the stem of the file that path points to
 		"""
 		return get_file_stem(self.path)
-
 
 	@property
 	def path(self):
@@ -132,25 +115,6 @@ class PathChecker:
 			bool: True if path exists and is a file, False otherwise
 		"""
 		return self.path.is_file()
-
-	def _set_extension(self, suffixes):
-		"""
-		Sets the extension that the path checked by this instance is supposed
-		to have. See the documentation of property extension. If the extension
-		is set to None, it will be an empty tuple.
-
-		Args:
-			suffixes (list or tuple): the extension that path is supposed to
-				have. If it is a list, it will be converted to a tuple.
-		"""
-		if suffixes is None:
-			self._extension = ()
-
-		elif isinstance(suffixes, tuple):
-			self._extension = suffixes
-
-		else:
-			self._extension = tuple(suffixes)
 
 	def _set_path(self, a_path):
 		"""

@@ -1,15 +1,56 @@
 from .arg_path_checker import ArgPathChecker
 from .path_checker import PathChecker
+from .extension_possessor import ExtensionPossessor
 
 
-class MissingArgPathWarner:
+class MissingArgPathWarner(ExtensionPossessor):
+	"""
+	This class' main purpose is to warn the programmer that a path was not
+	provided to a function or a script as an argument. If a path is given, the
+	class allows to instantiate PathChecker or ArgPathChecker. In order to
+	work, this class needs the name of the argument that the path is the value
+	of (property arg_name) and the extension that the path is supposed to have
+	(property extension).
+	"""
 
 	def __init__(self, arg_name, suffixes):
+		"""
+		The constructor requires an argument name and a list or tuple of
+		suffixes conform to the documentation of superclass
+		ExtensionPossessor.
+
+		Args:
+			arg_name (str): the name of the argument that the path is the
+				value of
+			suffixes (list or tuple): They must make a file name extension.
+
+		Raises:
+			TypeError: if argument suffixes is not None, nor a list or a tuple
+		"""
+		ExtensionPossessor.__init__(self, suffixes)
 		self._arg_name = arg_name
-		self._extension = suffixes
+
+	@property
+	def arg_name(self):
+		"""
+		This read-only property is the name of the path argument that may be
+		missing.
+		"""
+		return self._arg_name
 
 	def make_arg_path_checker(self, path):
-		return ArgPathChecker(path, self._extension, self._arg_name)
+		"""
+		Creates an ArgPathChecker instance with properties extension and
+		arg_name and the given file path.
+
+		Args:
+			path (pathlib.Path or str): It should be the value of the
+				path argument associated with this object.
+
+		Returns:
+			ArgPathChecker: an object able to verify the path argument's value
+		"""
+		return ArgPathChecker(path, self.extension, self.arg_name)
 
 	def make_missing_arg_msg(self):
 		"""
@@ -25,4 +66,15 @@ class MissingArgPathWarner:
 			+ "".join(self._extension) + "' must be provided."
 
 	def make_path_checker(self, path):
-		return PathChecker(path, self._extension)
+		"""
+		Creates a PathChecker instance with property extension and the given
+		file path.
+
+		Args:
+			path (pathlib.Path or str): It should be the value of the
+				path argument associated with this object.
+
+		Returns:
+			PathChecker: an object able to verify the path argument's value
+		"""
+		return PathChecker(path, self.extension)

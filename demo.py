@@ -45,9 +45,8 @@ if __name__ == "__main__":
 
 	except IndexError:
 		# Argument 2 not given
-		# TODO: implement a solution that does not infringe encapsulation.
 		output_path = make_altered_path(input_path, after_stem=AFTER_DFLT_STEM,
-			extension="".join(missing_out_warner._extension))
+			extension=missing_out_warner.extension_to_str())
 
 	# Real work
 	input_file_name = input_path.name
