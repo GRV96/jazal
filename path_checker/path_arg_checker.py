@@ -1,7 +1,7 @@
 from .path_checker import PathChecker
 
 
-class ArgPathChecker(PathChecker):
+class PathArgChecker(PathChecker):
 	"""
 	In this subclass of PathChecker, the path is considered as an argument
 	given to a fucntion or a script. The class provides methods to warn the
@@ -16,7 +16,8 @@ class ArgPathChecker(PathChecker):
 		The constructor needs a path, a list or tuple of suffixes that will
 		make the expected extension and the name of the argument whose value
 		is the checked path. In order to know which values are accepted, see
-		the documentation of PathChecker's properties path and extension.
+		the documentation of superclass PathChecker's property path and
+		superclass ExtensionPossessor.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
@@ -27,8 +28,8 @@ class ArgPathChecker(PathChecker):
 				checked path
 
 		Raises:
-			TypeError: if a_path is not None and not an instance of str or
-				pathlib.Path
+			TypeError: if a_path is not an instance of str or pathlib.Path or
+				if suffixes is not None, nor a list or a tuple
 		"""
 		PathChecker.__init__(self, a_path, suffixes)
 		self._arg_name = arg_name
@@ -42,7 +43,12 @@ class ArgPathChecker(PathChecker):
 			and self.arg_name == other.arg_name
 
 	def __repr__(self):
-		return self.__class__.__name__ + "('" + str(self.path) + "', "\
+		if self.path is None:
+			path_str = "None"
+		else:
+			path_str = "'" + str(self.path) + "'"
+
+		return self.__class__.__name__ + "(" + path_str + ", "\
 			+ str(self.extension) + ", '" + self.arg_name + "')"
 
 	@property
@@ -78,26 +84,13 @@ class ArgPathChecker(PathChecker):
 				+ " must be the path to a file with the extension '"
 				+ self.extension_to_str() + "'.")
 
-	def make_missing_arg_msg(self):
-		"""
-		The message created by this method tells that the argument named
-		self.arg_name, the path to a file with extension self.extension, is
-		needed. It is relevant if the argument is missing. This method works
-		even when path is None.
-
-		Returns:
-			str: a message telling that the argument is needed
-		"""
-		return self.arg_name + ": the path to a file with extension '"\
-			+ self.extension_to_str() + "' must be provided."
-
 	def name_with_correct_exten(self):
 		"""
 		Creates a file name by appending the expected extension to path's
 		stem.
 
 		Returns:
-			str: path's file name with a correct extension
+			str: path's file name with the expected extension
 		"""
 		return self.get_file_stem() + self.extension_to_str()
 
@@ -129,7 +122,7 @@ class ArgPathChecker(PathChecker):
 
 		else:
 			try:
-				PathChecker._set_path(self, a_path)
+				PathChecker._set_path(self, a_path) # Can raise a TypeError.
 
 			except TypeError:
 				# A different message that tells None is an acceptable value.
