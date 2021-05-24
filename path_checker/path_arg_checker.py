@@ -17,7 +17,7 @@ class PathArgChecker(PathChecker):
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
-				check. It can be None.
+				check. It keeps a copy of this argument.
 			suffixes (list or tuple): the extension that the path is supposed
 				to have. If None, the extension will be an empty tuple.
 			arg_name (str): the name of the argument whose value is the

@@ -25,7 +25,7 @@ class PathChecker(ExtensionPossessor):
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
-				check
+				check. It keeps a copy of this argument.
 			suffixes (list or tuple): the extension that the path is supposed
 				to have. If None, the extension will be an empty tuple.
 

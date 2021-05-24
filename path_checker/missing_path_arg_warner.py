@@ -7,9 +7,9 @@ class MissingPathArgWarner(ExtensionPossessor):
 	"""
 	This class' main purpose is to warn the programmer that a path was not
 	provided to a function or a script as an argument. If a path is given, the
-	class allows to instantiate PathChecker or PathArgChecker. In order to
-	work, this class needs the name of the argument that the path is the value
-	of (property arg_name) and the extension that the path is supposed to have
+	class allows to instantiate PathChecker or PathArgChecker. This class
+	needs the name of the argument that the path is the value of
+	(property arg_name) and the extension that the path is supposed to have
 	(property extension).
 	"""
 
@@ -20,9 +20,9 @@ class MissingPathArgWarner(ExtensionPossessor):
 		ExtensionPossessor.
 
 		Args:
-			arg_name (str): the name of the argument that the path is the
-				value of
-			suffixes (list or tuple): They must make a file name extension.
+			arg_name (str): the name of a path argument
+			suffixes (list or tuple): They must make a file extension expected
+				from the path argument.
 
 		Raises:
 			TypeError: if argument suffixes is not None, nor a list or a tuple

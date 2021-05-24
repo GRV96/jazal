@@ -1,6 +1,5 @@
 from path_checker import\
 	MissingPathArgWarner,\
-	PathArgChecker,\
 	make_altered_name,\
 	make_altered_path
 from pathlib import Path

@@ -57,9 +57,9 @@ def make_altered_name(path, before_stem=None,
 		after_stem (str): the string to add to the end of the path's stem. If
 			it is None, nothing is added to the stem's end. Defaults to None.
 		extension (str): the extension to append to the new stem in order to
-			make the name. Each suffix must comply with the specification of
-			property extension. If None, the extension of argument path is
-			appended. Defaults to None.
+			make the name. Each suffix must be such as those returned by
+			pathlib.Path's property suffixes. If None, the extension of
+			argument path is appended. Defaults to None.
 
 	Returns:
 		str: a new file name with the specified additions
@@ -90,9 +90,9 @@ def make_altered_path(path, before_stem=None,
 		after_stem (str): the string to add to the end of the path's stem. If
 			it is None, nothing is added to the stem's end. Defaults to None.
 		extension (str): the extension to append to the new stem in order to
-			make the name. Each suffix must comply with the specification of
-			property extension. If None, the extension of argument path is
-			appended. Defaults to None.
+			make the name. Each suffix must be such as those returned by
+			pathlib.Path's property suffixes. If None, the extension of
+			argument path is appended. Defaults to None.
 
 	Returns:
 		str: a new file name with the specified additions

@@ -1,8 +1,9 @@
 class ExtensionPossessor:
 	"""
 	This class's sole purpose is to contain a file extension as a tuple of
-	suffixes, which are strings. For example, a PDF file's suffix tuple is
-	('.pdf',); a Linux archive's suffix tuple can be ('.tar', '.gz'). Every
+	strings called suffixes. All suffixes must be such as those returned by
+	pathlib.Path's property suffixes. For example, a PDF file's suffix tuple
+	is ('.pdf',); a Linux archive's suffix tuple can be ('.tar', '.gz'). Every
 	suffix starts with '.'. This class is meant to be inherited from rather
 	than instantiated.
 	"""
@@ -14,7 +15,8 @@ class ExtensionPossessor:
 		documentation.
 
 		Args:
-			suffixes (list or tuple): They must make a file name extension.
+			suffixes (list or tuple): They must make a file name extension. If
+			None, the extension will be an empty tuple.
 
 		Raises:
 			TypeError: if argument suffixes is not None, nor a list or a tuple
