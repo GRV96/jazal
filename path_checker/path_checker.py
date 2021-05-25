@@ -9,9 +9,9 @@ _PATH_STR_TYPES = (Path, str)
 class PathChecker(ExtensionPossessor):
 	"""
 	This class contains a pathlib.Path object (property path) and a tuple of
-	suffixes (property extension) that the path is supposed to have.
-	PathChecker can verify whether the path has the right extension, whether
-	it exists and whether it is a directory or a file.
+	suffixes (property extension) that make the extension the path is supposed
+	to have. PathChecker can verify whether the path has the right extension,
+	whether it exists and whether it is a directory or a file.
 
 	In this class, a file's stem is defined as its name without the extension.
 	In Pathlib, however, the stem is the file name without the last suffix.
@@ -48,8 +48,7 @@ class PathChecker(ExtensionPossessor):
 
 	def extension_is_correct(self):
 		"""
-		Indicates whether path's extension matches the expected extension,
-		stored in property extension.
+		Indicates whether path's extension matches the expected extension.
 
 		Returns:
 			bool: True if path has the right extension, False otherwise

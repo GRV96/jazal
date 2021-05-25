@@ -5,7 +5,7 @@ class PathArgChecker(PathChecker):
 	"""
 	In this subclass of PathChecker, the path is considered as an argument
 	given to a fucntion or a script. The class provides methods to warn the
-	user that path is invalid and others to make a correct path.
+	user that the path is invalid and others to make a correct path.
 	"""
 
 	def __init__(self, a_path, suffixes, arg_name):
@@ -87,10 +87,11 @@ class PathArgChecker(PathChecker):
 
 	def path_with_correct_exten(self):
 		"""
-		Creates a path by replacing self.path's extension with self.extension.
+		Creates a file path by replacing path's extension with property
+		extension.
 
 		Returns:
-			pathlib.Path: a path identical to self.path, but with the expected
-				extension
+			pathlib.Path: a path identical to property path, but with the
+				expected extension
 		"""
 		return self._path.parents[0]/self.name_with_correct_exten()

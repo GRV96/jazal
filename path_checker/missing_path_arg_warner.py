@@ -15,14 +15,15 @@ class MissingPathArgWarner(ExtensionPossessor):
 
 	def __init__(self, arg_name, suffixes):
 		"""
-		The constructor requires an argument name and a list or tuple of
-		suffixes conform to the documentation of superclass
+		The constructor requires a path argument name and a list or tuple
+		containing the suffixes that make the file extension expected from the
+		path. The suffixes must be conform to the documentation of superclass
 		ExtensionPossessor.
 
 		Args:
 			arg_name (str): the name of a path argument
-			suffixes (list or tuple): They must make a file extension expected
-				from the path argument.
+			suffixes (list or tuple): the extension expected from the path
+				argument
 
 		Raises:
 			TypeError: if argument suffixes is not None, nor a list or a tuple

@@ -50,7 +50,7 @@ def make_altered_name(path, before_stem=None,
 	instead if you do not want to append an extension.
 
 	Args:
-		path (pathlib.Path): the file path whose name is to be altered
+		path (pathlib.Path): the file path that provides the original name
 		before_stem (str): the string to add to the beginning of the path's
 			stem. If it is None, nothing is added to the stem's beginning.
 			Defaults to None.
@@ -83,7 +83,8 @@ def make_altered_path(path, before_stem=None,
 	stem. This function does not change the given path.
 
 	Args:
-		path (pathlib.Path): the file path to altered
+		path (pathlib.Path): the file path of which an altered version is
+			needed
 		before_stem (str): the string to add to the beginning of the path's
 			stem. If it is None, nothing is added to the stem's beginning.
 			Defaults to None.
@@ -109,7 +110,7 @@ def make_altered_stem(path, before_stem=None, after_stem=None):
 	make_altered_name instead to append an extension.
 
 	Args:
-		path (pathlib.Path): the file path whose stem is to be altered
+		path (pathlib.Path): the file path that provides the original stem
 		before_stem (str): the string to add to the beginning of the path's
 			stem. If it is None, nothing is added to the stem's beginning.
 			Defaults to None.
