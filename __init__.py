@@ -1,5 +1,1 @@
-from .path_checker import\
-	ArgPathChecker,\
-	make_default_file_name,\
-	make_default_path,\
-	PathChecker
+from .path_checker import *

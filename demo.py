@@ -1,7 +1,7 @@
 from path_checker import\
-	ArgPathChecker,\
-	make_default_file_name,\
-	make_default_path
+	MissingPathArgWarner,\
+	make_altered_name,\
+	make_altered_path
 from pathlib import Path
 from sys import argv, exit
 
@@ -11,17 +11,17 @@ if __name__ == "__main__":
 	ERROR_INTRO = "ERROR! "
 
 	# Input path checks
+	missing_in_warner = MissingPathArgWarner("Argument 1", (".pdf",))
 	try:
-		input_checker = ArgPathChecker(None, [".pdf"], "Argument 1")
-		input_path = Path(argv[1]) # Can raise IndexError.
-		input_checker.path = input_path
+		input_path = Path(argv[1]) # Can raise an IndexError.
+		input_checker = missing_in_warner.make_path_arg_checker(input_path)
 
-		input_checker.check_path_exists()
-		input_checker.check_extension_correct()
+		input_checker.check_path_exists() # Can raise a FileNotFoundError.
+		input_checker.check_extension_correct() # Can raise a ValueError.
 
 	except IndexError:
 		# Argument 1 not given
-		print(ERROR_INTRO + input_checker.make_missing_arg_msg())
+		print(ERROR_INTRO + missing_in_warner.make_missing_arg_msg())
 		exit()
 
 	except Exception as e:
@@ -29,22 +29,23 @@ if __name__ == "__main__":
 		exit()
 
 	# Output path checks
+	missing_out_warner = MissingPathArgWarner("Argument 2", (".txt",))
 	try:
-		output_checker = ArgPathChecker(None, [".txt"], "Argument 2")
-		output_path = Path(argv[2]) # Can raise IndexError.
-		output_checker.path = output_path
+		output_path = Path(argv[2]) # Can raise an IndexError.
+		output_checker = missing_out_warner.make_path_arg_checker(output_path)
 
 		if output_checker.path_is_dir():
-			output_path = output_path/make_default_file_name(
-				input_checker, output_checker, after_stem=AFTER_DFLT_STEM)
+			output_path = output_path/make_altered_name(
+				input_path, after_stem=AFTER_DFLT_STEM,
+				extension=output_checker.extension_to_str())
 
 		elif not output_checker.extension_is_correct():
 			output_path = output_checker.path_with_correct_exten()
 
 	except IndexError:
 		# Argument 2 not given
-		output_path = make_default_path(
-			input_checker, output_checker, after_stem=AFTER_DFLT_STEM)
+		output_path = make_altered_path(input_path, after_stem=AFTER_DFLT_STEM,
+			extension=missing_out_warner.extension_to_str())
 
 	# Real work
 	input_file_name = input_path.name
