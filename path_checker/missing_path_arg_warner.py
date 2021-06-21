@@ -50,7 +50,7 @@ class MissingPathArgWarner(ExtensionPossessor):
 			str: a message telling that the argument is needed
 		"""
 		return self._arg_name + ": the path to a file with extension '"\
-			+ "".join(self._extension) + "' must be provided."
+			+ self.extension_to_str() + "' must be provided."
 
 	def make_path_arg_checker(self, path):
 		"""

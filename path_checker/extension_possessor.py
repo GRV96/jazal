@@ -4,8 +4,8 @@ class ExtensionPossessor:
 	strings called suffixes. All suffixes must be such as those returned by
 	pathlib.Path's property suffixes. For example, a PDF file's suffix tuple
 	is ('.pdf',); a Linux archive's suffix tuple can be ('.tar', '.gz'). Every
-	suffix starts with '.'. This class is meant to be inherited from rather
-	than instantiated.
+	suffix is supposed to start with '.'. This class is meant to be inherited
+	from rather than instantiated.
 	"""
 
 	def __init__(self, suffixes):
@@ -27,7 +27,7 @@ class ExtensionPossessor:
 	def extension(self):
 		"""
 		This read-only property is the file extension that this object
-		contains.
+		contains as a tuple of suffixes.
 		"""
 		return self._extension
 
@@ -43,7 +43,8 @@ class ExtensionPossessor:
 	def _set_extension(self, suffixes):
 		"""
 		Sets the extension that this object contains. If it is set to None,
-		the extension will be an empty tuple.
+		the extension will be an empty tuple. Each suffix is supposed to start
+		with '.'.
 
 		Args:
 			suffixes (list or tuple): They must make a file name extension.
