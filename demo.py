@@ -14,7 +14,8 @@ if __name__ == "__main__":
 	missing_in_warner = MissingPathArgWarner("Argument 1", (".pdf",))
 	try:
 		input_path = Path(argv[1]) # Can raise an IndexError.
-		input_checker = missing_in_warner.make_path_arg_checker(input_path)
+		input_checker =\
+			missing_in_warner.make_reactive_path_checker(input_path)
 
 		input_checker.check_path_exists() # Can raise a FileNotFoundError.
 		input_checker.check_extension_correct() # Can raise a ValueError.
@@ -32,7 +33,8 @@ if __name__ == "__main__":
 	missing_out_warner = MissingPathArgWarner("Argument 2", (".txt",))
 	try:
 		output_path = Path(argv[2]) # Can raise an IndexError.
-		output_checker = missing_out_warner.make_path_arg_checker(output_path)
+		output_checker =\
+			missing_out_warner.make_reactive_path_checker(output_path)
 
 		if output_checker.path_is_dir():
 			output_path = output_path/make_altered_name(

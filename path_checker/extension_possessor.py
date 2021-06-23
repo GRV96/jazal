@@ -26,8 +26,8 @@ class ExtensionPossessor:
 	@property
 	def extension(self):
 		"""
-		This read-only property is the file extension that this object
-		contains as a tuple of suffixes.
+		This read-only property is a tuple of suffixes that make a file
+		extension.
 		"""
 		return self._extension
 

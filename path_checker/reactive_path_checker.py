@@ -1,11 +1,11 @@
 from .path_checker import PathChecker
 
 
-class PathArgChecker(PathChecker):
+class ReactivePathChecker(PathChecker):
 	"""
 	In this subclass of PathChecker, the path is considered as an argument
-	given to a fucntion or a script. The class provides methods to warn the
-	user that the path is invalid and others to make a correct path.
+	given to a fucntion or a script. The class provides methods to react to
+	invalid paths by warning the user or making a correct path.
 	"""
 
 	def __init__(self, a_path, suffixes, arg_name):
@@ -31,11 +31,7 @@ class PathArgChecker(PathChecker):
 		self._arg_name = arg_name
 
 	def __eq__(self, other):
-		if not isinstance(other, self.__class__):
-			return False
-
-		return self._path == other._path\
-			and self.extension == other.extension\
+		return PathChecker.__eq__(self, other)\
 			and self.arg_name == other.arg_name
 
 	def __repr__(self):
