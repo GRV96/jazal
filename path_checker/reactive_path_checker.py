@@ -31,11 +31,7 @@ class ReactivePathChecker(PathChecker):
 		self._arg_name = arg_name
 
 	def __eq__(self, other):
-		if not isinstance(other, self.__class__):
-			return False
-
-		return self._path == other._path\
-			and self.extension == other.extension\
+		return PathChecker.__eq__(self, other)\
 			and self.arg_name == other.arg_name
 
 	def __repr__(self):
