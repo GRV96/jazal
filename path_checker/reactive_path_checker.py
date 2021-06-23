@@ -4,8 +4,8 @@ from .path_checker import PathChecker
 class ReactivePathChecker(PathChecker):
 	"""
 	In this subclass of PathChecker, the path is considered as an argument
-	given to a fucntion or a script. The class provides methods to warn the
-	user that the path is invalid and others to make a correct path.
+	given to a fucntion or a script. The class provides methods to react to
+	invalid paths by warning the user or making a correct path.
 	"""
 
 	def __init__(self, a_path, suffixes, arg_name):
