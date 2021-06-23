@@ -1,7 +1,7 @@
 from .path_checker import PathChecker
 
 
-class PathArgChecker(PathChecker):
+class ReactivePathChecker(PathChecker):
 	"""
 	In this subclass of PathChecker, the path is considered as an argument
 	given to a fucntion or a script. The class provides methods to warn the
