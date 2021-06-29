@@ -1,4 +1,4 @@
-from path_checker import\
+from jazal import\
 	MissingPathArgWarner,\
 	make_altered_name,\
 	make_altered_path
