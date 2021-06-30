@@ -19,8 +19,8 @@ class PathChecker(ExtensionPossessor):
 
 	def __init__(self, a_path, suffixes):
 		"""
-		The constructor needs a path and a list or tuple of suffixes that will
-		make the expected extension. See the documentation of superclass
+		The constructor needs a path and a list or tuple of suffixes that make
+		the expected extension. See the documentation of superclass
 		ExtensionPossessor for a description of valid extensions.
 
 		Args:
