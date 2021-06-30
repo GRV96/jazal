@@ -1,1 +1,1 @@
-from .path_checker import *
+from .jazal import *

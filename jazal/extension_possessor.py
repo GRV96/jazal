@@ -11,12 +11,12 @@ class ExtensionPossessor:
 	def __init__(self, suffixes):
 		"""
 		The constructor only requires the suffixes that make the extension.
-		Make sure that each suffix conforms to the description from the class
+		Make sure that each suffix conforms to the description in the class
 		documentation.
 
 		Args:
 			suffixes (list or tuple): They must make a file name extension. If
-			None, the extension will be an empty tuple.
+				None, the extension will be an empty tuple.
 
 		Raises:
 			TypeError: if argument suffixes is not None, nor a list or a tuple

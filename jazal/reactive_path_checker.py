@@ -73,8 +73,7 @@ class ReactivePathChecker(PathChecker):
 
 	def name_with_correct_exten(self):
 		"""
-		Creates a file name by appending the expected extension to path's
-		stem.
+		Creates a file name by appending the expected extension to path's stem.
 
 		Returns:
 			str: path's file name with the expected extension
