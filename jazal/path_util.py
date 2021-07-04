@@ -96,7 +96,7 @@ def make_altered_path(path, before_stem=None,
 			argument path is appended. Defaults to None.
 
 	Returns:
-		str: a new file name with the specified additions
+		pathlib.Path: a new file path with the specified additions
 	"""
 	name = make_altered_name(path, before_stem, after_stem, extension)
 	return path.parents[0]/name
