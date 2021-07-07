@@ -3,10 +3,22 @@ from jazal import PathChecker
 from pathlib import Path
 
 
-def test_init():
+def test_init_no_exten():
+	pc = PathChecker("ajxoj/io.txt", None)
+	assert pc.path == Path("ajxoj/io.txt")
+	assert pc.extension == ()
+
+
+def test_init_with_exten():
 	pc = PathChecker("ajxoj/io.txt", (".pdf",))
 	assert pc.path == Path("ajxoj/io.txt")
 	assert pc.extension == (".pdf",)
+
+
+def test_init_path_exception():
+	except_msg = "The given path must be an instance of pathlib.Path or str."
+	with pytest.raises(TypeError, match = except_msg):
+		pc = PathChecker(["ajxoj", "io.txt"], (".pdf",))
 
 
 def test_eq_same():
