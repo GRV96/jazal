@@ -46,18 +46,6 @@ class ReactivePathChecker(PathChecker):
 		"""
 		return self._arg_name
 
-	def check_path_exists(self):
-		"""
-		If path does not exist, this method raises a FileNotFoundError. The
-		error message contains property arg_name.
-
-		Raises:
-			FileNotFoundError: if self.path_exists() returns False
-		"""
-		if not self.path_exists():
-			raise FileNotFoundError(self.arg_name + ": "
-				+ str(self._path) + " does not exist.")
-
 	def check_extension_correct(self):
 		"""
 		If path's extension does not match property extension, this method
@@ -70,6 +58,18 @@ class ReactivePathChecker(PathChecker):
 			raise ValueError(self.arg_name
 				+ " must be the path to a file with the extension '"
 				+ self.extension_to_str() + "'.")
+
+	def check_path_exists(self):
+		"""
+		If path does not exist, this method raises a FileNotFoundError. The
+		error message contains property arg_name.
+
+		Raises:
+			FileNotFoundError: if self.path_exists() returns False
+		"""
+		if not self.path_exists():
+			raise FileNotFoundError(self.arg_name + ": "
+				+ str(self._path) + " does not exist.")
 
 	def name_with_correct_exten(self):
 		"""
