@@ -43,13 +43,13 @@ def assert_altered_path(
 	assert path == Path(expected_path_str)
 
 
-def test_exten_str_empty_path1():
+def test_exten_str_no_path():
 	p = Path()
 	exten_str = extension_to_str(p)
 	assert exten_str == EMPTY_STR
 
 
-def test_exten_str_empty_path2():
+def test_exten_str_empty_path():
 	assert_exten_str("", EMPTY_STR)
 
 
