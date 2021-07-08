@@ -63,4 +63,4 @@ def test_name_with_correct_exten():
 def test_path_with_correct_exten():
 	rpc = ReactivePathChecker("ajxoj/io.txt", (".pdf",), "awesomeArg")
 	correct_path = rpc.path_with_correct_exten()
-	assert str(correct_path) in ("ajxoj/io.pdf", "ajxoj\\io.pdf")
+	assert correct_path in (Path("ajxoj/io.pdf"), Path("ajxoj\\io.pdf"))
