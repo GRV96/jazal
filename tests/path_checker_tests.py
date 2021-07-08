@@ -47,9 +47,9 @@ def test_eq_different_types():
 
 def test_repr():
 	pc = PathChecker("ajxoj/io.txt", (".pdf",))
-	repr_pc = repr(pc)
-	assert repr_pc == "PathChecker('ajxoj/io.txt', ('.pdf',))"\
-		or repr_pc == "PathChecker('ajxoj\\io.txt', ('.pdf',))"
+	assert repr(pc) in (
+		"PathChecker('ajxoj/io.txt', ('.pdf',))",
+		"PathChecker('ajxoj\\io.txt', ('.pdf',))")
 
 
 def test_exten_is_correct_true():

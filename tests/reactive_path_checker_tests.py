@@ -36,11 +36,9 @@ def test_pc_eq_rpc():
 
 def test_repr():
 	rpc = ReactivePathChecker("ajxoj/io.txt", (".pdf",), "awesomeArg")
-	repr_rpc = repr(rpc)
-	assert repr_rpc ==\
-		"ReactivePathChecker('ajxoj/io.txt', ('.pdf',), 'awesomeArg')"\
-		or repr_rpc ==\
-		"ReactivePathChecker('ajxoj\\io.txt', ('.pdf',), 'awesomeArg')"
+	assert repr(rpc) in (
+		"ReactivePathChecker('ajxoj/io.txt', ('.pdf',), 'awesomeArg')",
+		"ReactivePathChecker('ajxoj\\io.txt', ('.pdf',), 'awesomeArg')")
 
 
 def test_check_extension_correct():
@@ -65,6 +63,4 @@ def test_name_with_correct_exten():
 def test_path_with_correct_exten():
 	rpc = ReactivePathChecker("ajxoj/io.txt", (".pdf",), "awesomeArg")
 	correct_path = rpc.path_with_correct_exten()
-	correct_path_str = str(correct_path)
-	assert correct_path_str == "ajxoj/io.pdf"\
-		or correct_path_str == "ajxoj\\io.pdf"
+	assert str(correct_path) in ("ajxoj/io.pdf", "ajxoj\\io.pdf")
