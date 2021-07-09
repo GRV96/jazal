@@ -40,8 +40,7 @@ def get_file_stem(path):
 	return file_stem
 
 
-def make_altered_name(path, before_stem=None,
-		after_stem=None, extension=None):
+def make_altered_name(path, before_stem=None, after_stem=None, extension=None):
 	"""
 	Creates a file name by adding a string to the beginning and/or the end of
 	a file path's stem and appending an extension to the new stem. If
@@ -74,8 +73,7 @@ def make_altered_name(path, before_stem=None,
 	return name
 
 
-def make_altered_path(path, before_stem=None,
-		after_stem=None, extension=None):
+def make_altered_path(path, before_stem=None, after_stem=None, extension=None):
 	"""
 	Creates a file path by adding a string to the beginning and/or the end of
 	a file path's stem and appending an extension to the new stem. If
@@ -83,8 +81,7 @@ def make_altered_path(path, before_stem=None,
 	stem. This function does not change the given path.
 
 	Args:
-		path (pathlib.Path): the file path of which an altered version is
-			needed
+		path (pathlib.Path): the file path of which an altered form is needed
 		before_stem (str): the string to add to the beginning of the path's
 			stem. If it is None, nothing is added to the stem's beginning.
 			Defaults to None.
