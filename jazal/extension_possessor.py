@@ -38,7 +38,7 @@ class ExtensionPossessor:
 		Returns:
 			str: extension as one string
 		"""
-		return "".join(self.extension)
+		return "".join(self._extension)
 
 	def _set_extension(self, suffixes):
 		"""

@@ -17,7 +17,7 @@ class MissingPathArgWarner(ExtensionPossessor):
 		"""
 		The constructor requires a path argument name and a list or tuple
 		containing the suffixes that make the file extension expected from the
-		path. The suffixes must be conform to the documentation of superclass
+		path. The suffixes must conform to the documentation of superclass
 		ExtensionPossessor.
 
 		Args:
