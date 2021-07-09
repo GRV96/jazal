@@ -52,7 +52,7 @@ class ReactivePathChecker(PathChecker):
 		raises a ValueError. The error message contains property arg_name.
 
 		Raises:
-			ValueError: if self.extension_is_correct() return False
+			ValueError: if self.extension_is_correct() returns False
 		"""
 		if not self.extension_is_correct():
 			raise ValueError(self.arg_name
