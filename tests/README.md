@@ -14,5 +14,5 @@ Execute script run_all_tests.py to perform all the tests.
 python run_all_tests.py
 ```
 
-Since several tests use relative paths, run them from this directory to
-prevent exceptions.
+Since several tests use relative paths to an actual directory and an actual
+file, run them from this directory to prevent exceptions.
