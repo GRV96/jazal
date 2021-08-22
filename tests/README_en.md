@@ -1,8 +1,8 @@
 ## Jazal Unit Tests
 
 This library's unit tests depend on framework pytest. In order to run a test
-suite contained in this directory, type in command line an instruction matching
-the following template.
+suite contained in this directory, type an instruction matching the following
+template in command line.
 
 ```
 pytest <file name>.py
