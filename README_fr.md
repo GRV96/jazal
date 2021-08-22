@@ -11,12 +11,11 @@ Jazal offre aussi la classe MissingPathArgWarner, qui produit un message
 explicite si l'utilisateur omet de fournir un argument chemin obligatoire. Si
 le chemin est donné, cette classe peut instancier PathChecker ou
 ReactivePathChecker de telle manière que chaque information requise ne soit
-donnée qu'une seule fois. Si un chemin optionel est omis, MissingPathArgWarner
-peut fournir l'extension appropriée, permettant de générer une valeur par
+donnée qu'une seule fois. Si un chemin optionnel est omis, MissingPathArgWarner
+peut fournir l'extension attendue, ce qui permet de générer une valeur par
 défaut.
 
 De plus, cette bibliothèque contient des fonctions qui aident à produire des
 valeurs par défaut pour des chemins manquants ou invalides.
 
 Voir le script demo.py pour savoir comment employer Jazal.
-
