@@ -3,7 +3,7 @@ from .path_util import get_file_stem
 from .extension_possessor import ExtensionPossessor
 
 
-_PATH_STR_TYPES = (Path, str)
+_TYPES_PATH_STR = (Path, str)
 
 
 class PathChecker(ExtensionPossessor):
@@ -19,13 +19,15 @@ class PathChecker(ExtensionPossessor):
 
 	def __init__(self, a_path, suffixes):
 		"""
-		The constructor needs a path and a list or tuple of suffixes that make
-		the expected extension. See the documentation of superclass
+		The constructor needs a file path and a list or tuple of suffixes that
+		make the expected extension. If a_path is a string, it will be
+		converted to a pathlib.Path object. If it is of type pathlib.Path, a
+		copy of it will be kept. See the documentation of superclass
 		ExtensionPossessor for a description of valid extensions.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
-				check. It keeps a copy of this argument.
+				check.
 			suffixes (list or tuple): the extension that the path is supposed
 				to have. If None, the extension will be an empty tuple.
 
@@ -112,9 +114,9 @@ class PathChecker(ExtensionPossessor):
 	def _set_path(self, a_path):
 		"""
 		Sets the path checked by this object. The path must be an instance of
-		pathlib.Path. If the given path is a string, it will be converted to a
-		pathlib.Path object. In either case, the stored path is a new instance
-		of pathlib.Path.
+		pathlib.Path. If a_path is a string, it will be converted to a
+		pathlib.Path object. If it is of type pathlib.Path, a copy of it will
+		be kept.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this object must check
@@ -122,7 +124,7 @@ class PathChecker(ExtensionPossessor):
 		Raises:
 			TypeError: if a_path is not an instance of pathlib.Path or str
 		"""
-		if isinstance(a_path, _PATH_STR_TYPES):
+		if isinstance(a_path, _TYPES_PATH_STR):
 			self._path = Path(a_path)
 
 		else:

@@ -10,14 +10,16 @@ class ReactivePathChecker(PathChecker):
 
 	def __init__(self, a_path, suffixes, arg_name):
 		"""
-		The constructor needs a path, a list or tuple of suffixes that will
-		make the expected extension and the name of the argument whose value
-		is the checked path. See the documentation of superclass
-		ExtensionPossessor for a description of valid extensions.
+		The constructor needs a file path, a list or tuple of suffixes that
+		will make the expected extension and the name of the argument whose
+		value is the checked path. If a_path is a string, it will be converted
+		to a pathlib.Path object. If it is of type pathlib.Path, a copy of it
+		will be kept. See the documentation of superclass ExtensionPossessor
+		for a description of valid extensions.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
-				check. It keeps a copy of this argument.
+				check.
 			suffixes (list or tuple): the extension that the path is supposed
 				to have. If None, the extension will be an empty tuple.
 			arg_name (str): the name of the argument whose value is the
