@@ -1,3 +1,3 @@
-FRANÇAIS: [Consignes des tests unitaires](/README_fr.md)
+FRANÇAIS: [Consignes des tests unitaires](/tests/README_fr.md)
 
-ENGLISH: [Unit tests instructions](/README_en.md)
+ENGLISH: [Unit tests instructions](/tests/README_en.md)
