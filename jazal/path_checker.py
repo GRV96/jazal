@@ -113,10 +113,9 @@ class PathChecker(ExtensionPossessor):
 
 	def _set_path(self, a_path):
 		"""
-		Sets the path checked by this object. The path must be an instance of
-		pathlib.Path. If a_path is a string, it will be converted to a
-		pathlib.Path object. If it is of type pathlib.Path, a copy of it will
-		be kept.
+		Sets the path checked by this object. If a_path is a string, it will
+		be converted to a pathlib.Path object. If it is of type pathlib.Path,
+		a copy of it will be kept.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this object must check
