@@ -12,8 +12,7 @@ explicite si l'utilisateur omet de fournir un argument chemin obligatoire. Si
 le chemin est donné, cette classe peut instancier PathChecker ou
 ReactivePathChecker de telle manière que chaque information requise ne soit
 donnée qu'une seule fois. Si un chemin optionnel est omis, MissingPathArgWarner
-peut fournir l'extension attendue, ce qui permet de générer une valeur par
-défaut.
+peut aider à générer une valeur par défaut en fournissant l'extension attendue.
 
 De plus, cette bibliothèque contient des fonctions qui aident à produire des
 valeurs par défaut pour les chemins manquants ou invalides.
