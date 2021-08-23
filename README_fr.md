@@ -16,6 +16,6 @@ peut fournir l'extension attendue, ce qui permet de générer une valeur par
 défaut.
 
 De plus, cette bibliothèque contient des fonctions qui aident à produire des
-valeurs par défaut pour des chemins manquants ou invalides.
+valeurs par défaut pour les chemins manquants ou invalides.
 
-Voir le script demo.py pour savoir comment employer Jazal.
+Voir le script [demo.py](/demo.py) pour savoir comment employer Jazal.
