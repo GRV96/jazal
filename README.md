@@ -1,20 +1,23 @@
 # Jazal
 
-Before an application uses a path to a file, it may be important to verify
-whether it has the right extension, whether it exists and whether it is a
-directory or a file. For this purpose, library Jazal provides class PathChecker
-and its subclass ReactivePathChecker. The latter is also able to warn the user
-about invalid paths and make correct ones. These two classes require
-pathlib.Path in order to work.
+### Français
 
-Jazal also offers class MissingPathArgWarner, which makes an explicit message
-if the user omits to provide a mandatory path argument. If the path is given,
-this class can instantiate PathChecker or ReactivePathChecker in such a way
-that each required information is given only once. If an optional path is
-omitted, MissingPathArgWarner can provide the appropriate extension for the
-default value.
+La classe PathChecker et sa sous-classe ReactivePathChecker effectuent
+certaines vérifications sur les chemins de fichier avant qu'une fonction ou un
+script les utilise. Ces classes dépendent de pathlib.Path. Lisez l'information
+complète [ici](/README_fr.md).
 
-In addition to that, this library contains functions that help making default
-values for missing or invalid paths.
+Le nom de cette bibliothèque vient de la chanson polonaise
+[*Hej, sokoły!*](https://www.youtube.com/watch?v=ZzZ1qmXZBuY). La répétition du
+mot *żal* [ʒal] dans les paroles a insprié le nom Jazal.
 
-See script demo.py to know how to use Jazal's content.
+### English
+
+Class PathChecker and its subclass ReactivePathChecker perform certain
+verifications on file paths before a function or a script uses them. These
+classes depend on pathlib.Path in order to work. Read the full information
+[here](/README_en.md).
+
+This library's name is based on the Polish song
+[*Hej, sokoły!*](https://www.youtube.com/watch?v=ZzZ1qmXZBuY). The repetition
+of the word *żal* [ʒal] in the lyrics inspired the name Jazal.
