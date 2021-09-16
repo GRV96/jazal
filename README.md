@@ -87,4 +87,4 @@ python run_all_tests.py
 ```
 
 Since several tests use relative paths to an actual directory and an actual
-file, run them from directory [tests](/tests) to preventexceptions.
+file, run them from directory [tests](/tests) to prevent exceptions.

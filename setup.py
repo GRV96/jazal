@@ -11,7 +11,7 @@ with open("README.md", "r", encoding="utf-8") as readme_stream:
 
 setuptools.setup(
     name = "jazal",
-    version = "0.0.1",
+    version = "1.0.0",
     author = "Guyllaume Rousseau",
     description = """
 		Jazal performs certain verifications on file
