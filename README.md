@@ -19,7 +19,7 @@ peut aider à générer une valeur par défaut en fournissant l'extension attend
 De plus, cette bibliothèque contient des fonctions qui aident à produire des
 valeurs par défaut pour les chemins manquants ou invalides.
 
-Voir le script [demo.py](/demo.py) pour savoir comment employer Jazal.
+Voir le script `demo.py` pour savoir comment employer Jazal.
 
 Le nom de cette bibliothèque vient de la chanson polonaise
 [*Hej, sokoły!*](https://www.youtube.com/watch?v=ZzZ1qmXZBuY). La répétition du
@@ -28,8 +28,8 @@ mot *żal* [ʒal] dans les paroles a insprié le nom Jazal.
 ### Tests unitaires de Jazal
 
 Les tests unitaires de cette bibliothèque dépendent du cadriciel pytest. Pour
-lancer une suite de tests contenue dans le dossier [tests](/tests), écrivez en
-ligne de commande une instruction correspondant au modèle suivant.
+lancer une suite de tests contenue dans le dossier `tests`, écrivez en ligne de
+commande une instruction correspondant au modèle suivant.
 
 ```
 pytest <file name>.py
@@ -42,8 +42,8 @@ python run_all_tests.py
 ```
 
 Puisque plusieurs tests utilisent des chemins relatifs menant à un dossier et
-à un fichier réels, lancez-les depuis le dossier [tests](/tests) pour éviter
-des exceptions.
+à un fichier réels, lancez-les depuis le dossier `tests` pour éviter des
+exceptions.
 
 ## English
 
@@ -64,7 +64,7 @@ the expected extension.
 In addition, this library contains functions that help making default values
 for missing or invalid paths.
 
-Se script [demo.py](/demo.py) to know how to use Jazal.
+See script `demo.py` to know how to use Jazal.
 
 This library's name is based on the Polish song
 [*Hej, sokoły!*](https://www.youtube.com/watch?v=ZzZ1qmXZBuY). The repetition
@@ -73,7 +73,7 @@ of the word *żal* [ʒal] in the lyrics inspired the name Jazal.
 ### Jazal Unit Tests
 
 This library's unit tests depend on framework pytest. In order to run a test
-suite contained in directory [tests](/tests), type an instruction matching the
+suite contained in directory `tests`, type an instruction matching the
 following template in command line.
 
 ```
@@ -87,4 +87,4 @@ python run_all_tests.py
 ```
 
 Since several tests use relative paths to an actual directory and an actual
-file, run them from directory [tests](/tests) to prevent exceptions.
+file, run them from directory `tests` to prevent exceptions.
