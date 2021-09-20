@@ -1,6 +1,11 @@
-# References
+# PyPI references
 # https://packaging.python.org/tutorials/packaging-projects/
 # https://www.geeksforgeeks.org/how-to-publish-python-package-at-pypi-using-twine-module/
+
+# grayskull references
+# https://github.com/conda-incubator/grayskull
+# https://githubmemory.com/repo/conda-incubator/grayskull/issues/209?page=2
+# https://docs.python.org/3/distutils/sourcedist.html
 
 
 import setuptools
