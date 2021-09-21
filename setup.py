@@ -18,10 +18,7 @@ setuptools.setup(
     name = "jazal",
     version = "1.0.0",
     author = "Guyllaume Rousseau",
-    description = """
-		Jazal performs certain verifications on file
-		paths before a function or a script uses them.
-	""",
+    description = "Jazal performs certain verifications on filepaths before a function or a script uses them.",
     long_description = long_description,
     long_description_content_type = "text/markdown",
     url = "https://github.com/GRV96/jazal",
