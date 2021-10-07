@@ -32,5 +32,6 @@ setuptools.setup(
 		"Topic :: Utilities"
 	],
 	packages = setuptools.find_packages(),
-	license = "MIT"
+	license = "MIT",
+	license_files = ("LICENSE",)
 )
