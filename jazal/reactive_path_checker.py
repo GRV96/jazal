@@ -25,8 +25,7 @@ class ReactivePathChecker(PathChecker):
 				checked path
 
 		Raises:
-			TypeError: if a_path is not an instance of str or pathlib.Path or
-				if suffixes is not None, nor a list or a tuple
+			TypeError: if a_path is not an instance of str or pathlib.Path
 		"""
 		PathChecker.__init__(self, a_path, extension)
 		self._arg_name = arg_name
