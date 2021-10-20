@@ -1,52 +1,61 @@
 from pathlib import Path
-from .path_util import get_file_stem
-from .extension_possessor import ExtensionPossessor
+from .path_util import\
+	extension_to_str,\
+	get_file_stem
 
 
 _TYPES_PATH_STR = (Path, str)
 
 
-class PathChecker(ExtensionPossessor):
+class PathChecker:
 	"""
-	This class contains a pathlib.Path object (property path) and a tuple of
-	suffixes (property extension) that make the extension the path is supposed
-	to have. PathChecker can verify whether the path has the right extension,
-	whether it exists and whether it is a directory or a file.
+	This class contains a pathlib.Path object (property path) and the extension
+	that the path is supposed to have (property extension). PathChecker can
+	verify whether the path has the right extension, whether it exists and
+	whether it is a directory or a file.
 
 	In this class, a file's stem is defined as its name without the extension.
 	In Pathlib, however, the stem is the file name without the last suffix.
 	"""
 
-	def __init__(self, a_path, suffixes):
+	def __init__(self, a_path, extension):
 		"""
-		The constructor needs a file path and a list or tuple of suffixes that
-		make the expected extension. If a_path is a string, it will be
-		converted to a pathlib.Path object. If it is of type pathlib.Path, a
-		copy of it will be kept. See the documentation of superclass
-		ExtensionPossessor for a description of valid extensions.
+		The constructor needs a file path and the expected extension. If a_path
+		is a string, it will be converted to a pathlib.Path object. If it is of
+		type pathlib.Path, the instance will store a copy of it.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
 				check.
-			suffixes (list or tuple): the extension that the path is supposed
-				to have. If None, the extension will be an empty tuple.
+			extension (str): the extension that the path is supposed to have.
+				It must start with a '.'. If the path is not supposed to have
+				an extension, set this argument to an empty string.
 
 		Raises:
-			TypeError: if a_path is not an instance of str or pathlib.Path or
-				if suffixes is not None, nor a list or a tuple
+			TypeError: if a_path is not an instance of str or pathlib.Path
 		"""
-		ExtensionPossessor.__init__(self, suffixes)
+		self._extension = extension
 		self._set_path(a_path)
 
 	def __eq__(self, other):
 		if not isinstance(other, self.__class__):
 			return False
 
-		return self._path == other._path and self.extension == other.extension
+		return self._path == other._path\
+			and self._extension == other._extension
 
 	def __repr__(self):
-		return self.__class__.__name__ + "('" + str(self._path) + "', "\
-			+ str(self.extension) + ")"
+		return self.__class__.__name__ + "('" + str(self._path) + "', '"\
+			+ self._extension + "')"
+
+	@property
+	def extension(self):
+		"""
+		This read-only property is the extension (a string) that path is
+		supposed to have. If path is not supposed to have an extension, this
+		property is an empty string.
+		"""
+		return self._extension
 
 	def extension_is_correct(self):
 		"""
@@ -55,8 +64,7 @@ class PathChecker(ExtensionPossessor):
 		Returns:
 			bool: True if path has the right extension, False otherwise
 		"""
-		# pathlib.Path objects store their extension in a list.
-		return tuple(self._path.suffixes) == self.extension
+		return extension_to_str(self._path) == self._extension
 
 	def get_file_name(self):
 		"""
@@ -79,8 +87,8 @@ class PathChecker(ExtensionPossessor):
 	@property
 	def path(self):
 		"""
-		This read-only property returns a copy of the path that this object
-		checks. It is an instance of pathlib.Path.
+		This read-only property returns a copy of the path (pathlib.Path) that
+		this object checks.
 		"""
 		return Path(self._path)
 
@@ -115,7 +123,7 @@ class PathChecker(ExtensionPossessor):
 		"""
 		Sets the path checked by this object. If a_path is a string, it will
 		be converted to a pathlib.Path object. If it is of type pathlib.Path,
-		a copy of it will be kept.
+		this instance will store a copy of it.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this object must check
