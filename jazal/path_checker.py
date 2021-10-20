@@ -51,9 +51,9 @@ class PathChecker:
 	@property
 	def extension(self):
 		"""
-		This read-only property is the extension (a string) that path is
-		supposed to have. If path is not supposed to have an extension, this
-		property is an empty string.
+		This read-only property is the extension (str) that path is supposed to
+		have. If path is not supposed to have an extension, this property is an
+		empty string.
 		"""
 		return self._extension
 
