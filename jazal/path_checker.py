@@ -22,12 +22,12 @@ class PathChecker:
 		"""
 		The constructor needs a file path and the expected extension. If a_path
 		is a string, it will be converted to a pathlib.Path object. If it is of
-		type pathlib.Path, the instance will store a copy of it. The expected
+		type pathlib.Path, the instance will store its reference. The expected
 		extension must start with a '.'.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
-				check.
+				check
 			extension (str): the extension that the path is supposed to have.
 				If the path is not supposed to havean extension, set this
 				argument to an empty string.
@@ -91,7 +91,7 @@ class PathChecker:
 		This read-only property returns a copy of the path (pathlib.Path) that
 		this object checks.
 		"""
-		return Path(self._path)
+		return self._path
 
 	def path_exists(self):
 		"""
@@ -124,7 +124,7 @@ class PathChecker:
 		"""
 		Sets the path checked by this object. If a_path is a string, it will
 		be converted to a pathlib.Path object. If it is of type pathlib.Path,
-		this instance will store a copy of it.
+		this instance stores its reference.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this object must check
@@ -132,7 +132,10 @@ class PathChecker:
 		Raises:
 			TypeError: if a_path is not an instance of pathlib.Path or str
 		"""
-		if isinstance(a_path, _TYPES_PATH_STR):
+		if isinstance(a_path, Path):
+			self._path = a_path
+
+		elif isinstance(a_path, str):
 			self._path = Path(a_path)
 
 		else:

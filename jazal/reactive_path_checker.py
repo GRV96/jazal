@@ -13,12 +13,12 @@ class ReactivePathChecker(PathChecker):
 		The constructor needs a file path, the expected extension and the name
 		of the argument whose value is the checked path. If a_path is a string,
 		it will be converted to a pathlib.Path object. If it is of type
-		pathlib.Path, the instance will store a copy of it. The expected
+		pathlib.Path, the instance will store its reference. The expected
 		extension must start with a '.'.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
-				check.
+				check
 			extension (str): the extension that the path is supposed to have.
 				If the path is not supposed to have an extension, set this
 				argument to an empty string.
