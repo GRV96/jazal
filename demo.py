@@ -20,7 +20,7 @@ if __name__ == "__main__":
 	try:
 		input_path = Path(argv[1]) # Can raise an IndexError.
 
-		# A checker is created with the path and the data kept in the warner.
+		# A checker is created with the path and the data stored in the warner.
 		input_checker =\
 			missing_in_warner.make_reactive_path_checker(input_path)
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 	try:
 		output_path = Path(argv[2]) # Can raise an IndexError.
 
-		# A checker is created with the path and the data kept in the warner.
+		# A checker is created with the path and the data stored in the warner.
 		output_checker =\
 			missing_out_warner.make_reactive_path_checker(output_path)
 
