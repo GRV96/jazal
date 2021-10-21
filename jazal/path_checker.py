@@ -88,8 +88,8 @@ class PathChecker:
 	@property
 	def path(self):
 		"""
-		This read-only property returns a copy of the path (pathlib.Path) that
-		this object checks.
+		This read-only property is the path (pathlib.Path) that this object
+		checks.
 		"""
 		return self._path
 
