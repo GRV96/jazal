@@ -16,7 +16,7 @@ if __name__ == "__main__":
 	# INPUT PATH CHECKS
 
 	# This object warns the user if the path is not given.
-	missing_in_warner = MissingPathArgWarner("Argument 1", (".pdf",))
+	missing_in_warner = MissingPathArgWarner("Argument 1", ".pdf")
 	try:
 		input_path = Path(argv[1]) # Can raise an IndexError.
 
@@ -41,7 +41,7 @@ if __name__ == "__main__":
 	# OUTPUT PATH CHECKS
 
 	# If no output path is given, the warner can serve another purpose.
-	missing_out_warner = MissingPathArgWarner("Argument 2", (".txt",))
+	missing_out_warner = MissingPathArgWarner("Argument 2", ".txt")
 	try:
 		output_path = Path(argv[2]) # Can raise an IndexError.
 
