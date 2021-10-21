@@ -4,9 +4,6 @@ from .path_util import\
 	get_file_stem
 
 
-_TYPES_PATH_STR = (Path, str)
-
-
 class PathChecker:
 	"""
 	This class contains a pathlib.Path object (property path) and the extension
