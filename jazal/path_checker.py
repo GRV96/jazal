@@ -22,14 +22,15 @@ class PathChecker:
 		"""
 		The constructor needs a file path and the expected extension. If a_path
 		is a string, it will be converted to a pathlib.Path object. If it is of
-		type pathlib.Path, the instance will store a copy of it.
+		type pathlib.Path, the instance will store a copy of it. The expected
+		extension must start with a '.'.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this instance will
 				check.
 			extension (str): the extension that the path is supposed to have.
-				It must start with a '.'. If the path is not supposed to have
-				an extension, set this argument to an empty string.
+				If the path is not supposed to havean extension, set this
+				argument to an empty string.
 
 		Raises:
 			TypeError: if a_path is not an instance of str or pathlib.Path

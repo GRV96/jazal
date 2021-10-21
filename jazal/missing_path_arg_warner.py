@@ -46,9 +46,8 @@ class MissingPathArgWarner:
 	def make_missing_arg_msg(self):
 		"""
 		The message created by this method tells that the argument named
-		<argument name>, the path to a file with extension
-		<expected extension>, is needed. It is relevant if the argument is
-		missing.
+		<argument name>, the path to a file with extension <expected
+		extension>, is needed. It is relevant if the argument was not provided.
 
 		Returns:
 			str: a message telling that the argument is needed
