@@ -25,7 +25,8 @@ def extension_to_str(path):
 
 def get_file_stem(path):
 	"""
-	Provides the stem of the file that a path points to.
+	Provides the stem of the file that a path points to. A file stem is a file
+	name without the extension.
 
 	Args:
 		path (pathlib.Path): the file path whose stem is needed
