@@ -2,10 +2,9 @@
 The present module contains functions meant to help handling file paths, which
 must be provided as pathlib.Path objects.
 
-Here, however, the word "stem" is used in a different sense than in Pathlib.
-That library represents file extensions as lists of suffixes starting with a
+Library Pathlib represents file extensions as lists of suffixes starting with a
 '.' and it defines a file stem as a file name without the last suffix. In this
-module, on the other hand, a stem is a file name without the extension.
+module, however, a stem is a file name without the extension.
 """
 
 
