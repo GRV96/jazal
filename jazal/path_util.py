@@ -1,15 +1,19 @@
 """
 The present module contains functions meant to help handling file paths, which
-must be provided as pathlib.Path objects. Pathlib represents file extensions as
-lists of suffixes starting with a '.'. It defines a file stem as a file name
-without the last suffix. However, the word "stem" has a different meaning in
-this module: it is a file name without the extension.
+must be provided as pathlib.Path objects.
+
+Here, however, the word "stem" is used in a different sense than in Pathlib.
+That library represents file extensions as lists of suffixes starting with a
+'.' and it defines a file stem as a file name without the last suffix. In this
+module, on the other hand, a stem is a file name without the extension.
 """
 
 
 def extension_to_str(path):
 	"""
-	Concatenates the suffixes that make the extension of the given path.
+	Pathlib represents file extensions as lists of suffixes starting with a
+	'.'. This method concatenates the suffixes that make the extension of the
+	given path.
 
 	Args:
 		path (pathlib.Path): the path whose extension is needed
