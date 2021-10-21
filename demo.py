@@ -32,11 +32,11 @@ if __name__ == "__main__":
 	except IndexError:
 		# The warner makes an explicit message if argument 1 was not given.
 		print(ERROR_INTRO + missing_in_warner.make_missing_arg_msg())
-		exit()
+		exit(1)
 
 	except Exception as e:
 		print(ERROR_INTRO + str(e))
-		exit()
+		exit(1)
 
 	# OUTPUT PATH CHECKS
 
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 			# A default file name is appended to the de directory's path.
 			output_path = output_path/make_altered_name(
 				input_path, after_stem=AFTER_DFLT_STEM,
-				extension=output_checker.extension_to_str())
+				extension=output_checker.extension)
 
 		elif not output_checker.extension_is_correct():
 			# The invalid extension is replaced by a valid one.
@@ -62,7 +62,7 @@ if __name__ == "__main__":
 	except IndexError:
 		# The warner provides the needed extension to make the output path.
 		output_path = make_altered_path(input_path, after_stem=AFTER_DFLT_STEM,
-			extension=missing_out_warner.extension_to_str())
+			extension=missing_out_warner.extension)
 
 	# REAL WORK
 	input_file_name = input_path.name
