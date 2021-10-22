@@ -56,7 +56,7 @@ class ReactivePathChecker(PathChecker):
 			ValueError: if self.extension_is_correct() returns False
 		"""
 		if not self.extension_is_correct():
-			raise ValueError(self.arg_name
+			raise ValueError(self._arg_name
 				+ " must be the path to a file with the extension '"
 				+ self._extension + "'.")
 
@@ -69,8 +69,31 @@ class ReactivePathChecker(PathChecker):
 			FileNotFoundError: if self.path_exists() returns False
 		"""
 		if not self.path_exists():
-			raise FileNotFoundError(self.arg_name + ": "
+			raise FileNotFoundError(self._arg_name + ": "
 				+ str(self._path) + " does not exist.")
+
+	def check_path_is_dir(self):
+		"""
+		If path does not point to a directory or does not exist, this method
+		raises a ValueError. The error message contains property arg_name.
+
+		Raises:
+			ValueError: if self.path_is_dir() returns False
+		"""
+		if not self.path_is_dir():
+			raise ValueError(self._arg_name
+				+ " must be the path to a directory.")
+
+	def check_path_is_file(self):
+		"""
+		If path does not point to a file or does not exist, this method raises
+		a ValueError. The error message contains property arg_name.
+
+		Raises:
+			ValueError: if self.path_is_file() returns False
+		"""
+		if not self.path_is_file():
+			raise ValueError(self._arg_name + " must be the path to a file.")
 
 	def name_with_correct_exten(self):
 		"""
