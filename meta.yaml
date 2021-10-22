@@ -1,5 +1,5 @@
 {% set name = "jazal" %}
-{% set version = "1.0.0" %}
+{% set version = "2.0.0" %}
 
 
 package:
@@ -34,6 +34,7 @@ test:
 about:
   home: https://github.com/GRV96/jazal
   summary: "Jazal performs certain verifications on file paths before a function or a script uses them."
+  description: "See the README in the GitHub repository (home)."
   license: MIT
   license_file: LICENSE
 
