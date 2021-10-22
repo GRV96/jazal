@@ -46,7 +46,7 @@ class MissingPathArgWarner:
 	def make_missing_arg_msg(self):
 		"""
 		The message created by this method tells that the argument named
-		<argument name>, the path to a file with extension <expected
+		<property arg_name>, the path to a file with extension <property
 		extension>, is needed. It is relevant if the argument was not provided.
 
 		Returns:
