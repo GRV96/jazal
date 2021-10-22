@@ -1,6 +1,5 @@
 from jazal import\
 	MissingPathArgWarner,\
-	make_altered_name,\
 	make_altered_path
 from pathlib import Path
 from sys import argv, exit
