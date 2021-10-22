@@ -27,6 +27,7 @@ if __name__ == "__main__":
 		# If necessary, the checker raises an
 		# exeption with an explicit message.
 		input_checker.check_path_exists() # Can raise a FileNotFoundError.
+		input_checker.check_path_is_file() # Can raise a ValueError.
 		input_checker.check_extension_correct() # Can raise a ValueError.
 
 	except IndexError:

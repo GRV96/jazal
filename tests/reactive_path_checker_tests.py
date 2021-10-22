@@ -55,6 +55,21 @@ def test_check_path_exists():
 		rpc.check_path_exists()
 
 
+def test_check_path_is_dir():
+	rpc = ReactivePathChecker(
+		"some_dir/un_fichier_pdf.pdf", ".pdf", "awesomeArg")
+	except_msg = "awesomeArg must be the path to a directory."
+	with pytest.raises(ValueError, match = except_msg):
+		rpc.check_path_is_dir()
+
+
+def test_check_path_is_file():
+	rpc = ReactivePathChecker("some_dir", "", "awesomeArg")
+	except_msg = "awesomeArg must be the path to a file."
+	with pytest.raises(ValueError, match = except_msg):
+		rpc.check_path_is_file()
+
+
 def test_name_with_correct_exten():
 	rpc = ReactivePathChecker("ajxoj/io.txt", ".pdf", "awesomeArg")
 	assert rpc.name_with_correct_exten() == "io.pdf"

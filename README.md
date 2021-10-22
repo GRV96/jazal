@@ -19,7 +19,8 @@ peut aider à générer une valeur par défaut en fournissant l'extension attend
 De plus, cette bibliothèque contient des fonctions qui aident à produire des
 valeurs par défaut pour les chemins manquants ou invalides.
 
-Voir le script `demo.py` pour savoir comment employer Jazal.
+Voir les scripts `demo_with_files.py` et `demo_with_dirs.py` pour savoir
+comment employer Jazal.
 
 Le nom de cette bibliothèque vient de la chanson polonaise
 [*Hej, sokoły!*](https://www.youtube.com/watch?v=ZzZ1qmXZBuY). La répétition du
@@ -64,7 +65,8 @@ the expected extension.
 In addition, this library contains functions that help making default values
 for missing or invalid paths.
 
-See script `demo.py` to know how to use Jazal.
+See scripts `demo_with_files.py` and `demo_with_dirs.py` to know how to use
+Jazal.
 
 This library's name is based on the Polish song
 [*Hej, sokoły!*](https://www.youtube.com/watch?v=ZzZ1qmXZBuY). The repetition
