@@ -11,8 +11,9 @@ class PathChecker:
 	verify whether the path has the right extension, whether it exists and
 	whether it is a directory or a file.
 
-	In this class, a file's stem is defined as its name without the extension.
-	In Pathlib, however, the stem is the file name without the last suffix.
+	In Pathlib, a file's stem is defined as its name without the extension's
+	last suffix. In this class, however, a stem is a file name without the
+	extension.
 	"""
 
 	def __init__(self, a_path, extension):
@@ -26,7 +27,7 @@ class PathChecker:
 			a_path (pathlib.Path or str): the path that this instance will
 				check
 			extension (str): the extension that the path is supposed to have.
-				If the path is not supposed to havean extension, set this
+				If the path is not supposed to have an extension, set this
 				argument to an empty string.
 
 		Raises:
@@ -75,7 +76,8 @@ class PathChecker:
 
 	def get_file_stem(self):
 		"""
-		Provides the stem of the file that path points to.
+		Provides the stem of the file that path points to. A file's stem is its
+		name without the extension.
 
 		Returns:
 			str: the stem of the file that path points to
@@ -121,7 +123,7 @@ class PathChecker:
 		"""
 		Sets the path checked by this object. If a_path is a string, it will
 		be converted to a pathlib.Path object. If it is of type pathlib.Path,
-		this instance stores its reference.
+		this instance will store its reference.
 
 		Args:
 			a_path (pathlib.Path or str): the path that this object must check
