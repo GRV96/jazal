@@ -81,8 +81,8 @@ class ReactivePathChecker(PathChecker):
 			ValueError: if self.path_is_dir() returns False
 		"""
 		if not self.path_is_dir():
-			raise ValueError(self._arg_name
-				+ " must be the path to a directory.")
+			raise ValueError(
+				self._arg_name + " must be the path to a directory.")
 
 	def check_path_is_file(self):
 		"""
