@@ -1,11 +1,9 @@
-# PyPI references
+# References
 # https://packaging.python.org/tutorials/packaging-projects/
 # https://www.geeksforgeeks.org/how-to-publish-python-package-at-pypi-using-twine-module/
-
-# grayskull references
-# https://github.com/conda-incubator/grayskull
-# https://githubmemory.com/repo/conda-incubator/grayskull/issues/209?page=2
+# https://stackoverflow.com/questions/45168408/creating-tar-gz-in-dist-folder-with-python-setup-py-install
 # https://docs.python.org/3/distutils/sourcedist.html
+# https://github.com/conda-incubator/grayskull
 
 
 import setuptools
@@ -18,7 +16,7 @@ setuptools.setup(
 	name = "jazal",
 	version = "2.0.0",
 	author = "Guyllaume Rousseau",
-	description = "Jazal performs certain verifications on filepaths before a function or a script uses them.",
+	description = "Jazal performs certain verifications on file paths before a function or a script uses them.",
 	long_description = long_description,
 	long_description_content_type = "text/markdown",
 	url = "https://github.com/GRV96/jazal",
